@@ -47,7 +47,7 @@ const HeroSection = () => {
       <div className="flex gap-y-2 justify-center h-[50vh]  mx-auto  items-center flex-col">
         <div className="flex flex-col tracking-widest">
           <span className="uppercase font-semibold text-[#49529b] text-center text-lg lg:text-6xl">
-            <span className="text-[#181818]">beyond</span> payment and transfers
+            <span className="text-[#181818]">beyond</span> <br className="lg:hidden block" /> payment and transfers
             {""}
             <br />
             One account for all

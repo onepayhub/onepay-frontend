@@ -33,9 +33,9 @@ const Navbar = () => {
         </div>
       </div>
       {toggleMenu && (
-        <div className="animate-slideBottom fixed left-0 top-0 z-50 flex h-full w-full flex-col items-center gap-20 overflow-hidden bg-primary px-6 pt-6 transition-all duration-150">
+        <div className="animate-slideBottom fixed left-0 top-0 z-50 flex h-full w-full flex-col items-center gap-20 overflow-hidden bg-[#fff] bg-primary px-6 pt-6 transition-all duration-150">
           <div className="flex w-full items-center justify-between">
-            <img src="/logo.png" alt="gywde" />
+          <Link to="/" className="font-semibold text-lg lg:text-3xl text-[#3745c0]">Onepay</Link>
 
             <span
               className="right-6  top-5 cursor-pointer text-2xl"
@@ -55,7 +55,7 @@ const Navbar = () => {
             <li className="mt-12 cursor-pointer text-xl text-primary">
               <div className="flex items-center justify-center">
                 <Link
-                  to="/about-us"
+                  to="#"
                   className=" text-lg font-normal text-lightgray"
                 >
                   About Us
@@ -65,33 +65,26 @@ const Navbar = () => {
             <li className="mt-12 cursor-pointer text-xl text-primary">
               <div className="flex items-center justify-center">
                 <Link
-                  to="/services"
+                  to="#"
                   className=" text-lg font-normal text-lightgray"
                 >
-                  Services
+                  Business
                 </Link>
               </div>
             </li>
             <li className="mt-12 cursor-pointer text-xl text-primary">
               <div className="flex items-center justify-center">
                 <Link
-                  to="/vendor"
+                  to="#"
                   className=" text-lg font-normal text-lightgray"
                 >
-                  Be a Vendor
+                 Company
                 </Link>
               </div>
             </li>
           </ul>
           <div className="mt-20 flex w-full flex-col items-center space-y-6 text-base">
-            <Link to="/login" className="mx-auto w-[100%]">
-              <Button
-                className="w-full !text-base font-semibold  !text-lightgray hover:scale-95"
-                children="Log in"
-                backgroundColor={"transparent"}
-                padding={"15px 30px"}
-              />
-            </Link>
+          
             <Link to="/signup" className="mx-auto w-[100%]">
               <Button
                 className="w-full !text-base font-semibold  text-primary hover:scale-95"

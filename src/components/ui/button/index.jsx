@@ -49,7 +49,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   border: "1px solid #0096C1",
-  backgroundColor: "#0096C1",
+  backgroundColor: "#3745c0",
   textColor: "#ffffff",
   borderRadius: "5px",
   height: "100%",

@@ -98,7 +98,8 @@ const Signup = () => {
           const user = userCredential.user;
           const userId = user.uid;
           const UUID = generateRandomUID(5);
-
+          console.log(user.accessToken)
+          // save user details and access token for protected routes
           dispatch(setSignupDetails({ firstName, lastName, email }));
           // Store the additional details in the database under the user's ID
           const userRef = ref(database, `users/${userId}`);
@@ -148,6 +149,12 @@ const Signup = () => {
           }
           if (error.code === "auth/network-request-failed") {
             toast.error("Network error occurred");
+          }
+          if (error.code === "auth/weak-password") {
+            toast.warn("Weak password, try again");
+          }
+          if (error.code === "auth/invalid-email") {
+            toast.warn("Invalid email, try again");
           }
           console.log(error.code);
         });

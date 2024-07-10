@@ -16,7 +16,10 @@ const Verify = () => {
 
   return (
     <div className="relative">
-      <Link to='/' className="font-semibold flex flex-col absolute pl-6 lg:pl-20 text-[#49529b] top-[4%] lg:top-[6%] lg:text-3xl">
+      <Link
+        to="/"
+        className="font-semibold flex flex-col absolute pl-6 lg:pl-20 text-[#49529b] top-[4%] lg:top-[6%] lg:text-3xl"
+      >
         <span>OnePay</span>
         <span className="text-sm">Verify your email address</span>
       </Link>
@@ -39,7 +42,12 @@ const Verify = () => {
             </span>
             <span className="text-[#49529b] font-medium">{details?.email}</span>
           </div>
-          <span>Please click the verification link to begin</span>
+          <div className="flex items-center gap-x-2">
+            <span>
+              Please verify by clicking the verification link and then{" "}
+            </span>{" "}
+            <Link to="/prototype/signin" className="text-[#49529b] lg:text-lg font-medium">Sign in</Link>
+          </div>
         </div>
       </div>
     </div>

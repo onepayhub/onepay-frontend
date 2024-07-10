@@ -55,11 +55,12 @@ const Login = () => {
       signInWithEmailAndPassword(authInstance, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          console.log(user)
           if (user.emailVerified) {
             // User is logged in and email is verified
             // Proceed with the desired action (e.g., redirect to a dashboard)
             toast.success("Logged in successfully");
-            navigate("dashboard");
+            navigate("/prototype/dashboard");
           } else {
             // Email is not verified
             // Display an error message
@@ -79,13 +80,16 @@ const Login = () => {
           if (error.code === "auth/network-request-failed") {
             toast.error("Network error occurred");
           }
-          console.log(error)
+          console.log(error);
         });
     }
   };
   return (
     <div className="relative">
-      <Link to='/' className="font-semibold flex flex-col absolute pl-6 lg:pl-20 text-[#49529b] lg:top-[6%] top-[4%] lg:text-3xl">
+      <Link
+        to="/"
+        className="font-semibold flex flex-col absolute pl-6 lg:pl-20 text-[#49529b] lg:top-[6%] top-[4%] lg:text-3xl"
+      >
         <span>OnePay</span>
         <span className="text-sm">Welcome back</span>
       </Link>
@@ -109,7 +113,7 @@ const Login = () => {
               Password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               className={inputStyle}

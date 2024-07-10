@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { HomePage, Login, Signup, Verified, Verify } from "./pages/";
+import { Dashboard, HomePage, Login, Signup, Verified, Verify } from "./pages/";
 import { ToastContainer } from "react-toastify";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
           <Route path="signup/verify" element={<Verify />} />
           <Route path="signup/verified" element={<Verified />} />
           <Route path="signin" element={<Login />} />
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
       <ToastContainer position="bottom-right" />

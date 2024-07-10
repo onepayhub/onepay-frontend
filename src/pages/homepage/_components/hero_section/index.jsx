@@ -13,7 +13,7 @@ import {
 
 const HeroSection = () => {
   return (
-    <div className="bg-[#eee] relative px-10 rounded-[20px] py-10 lg:mt-20 mt-0 rounded-tr-none rounded-tl-none container mx-auto container-md">
+    <div className="bg-[#eee] relative px-10 lg:rounded-[20px] py-10 lg:mt-20 mt-0 rounded-tr-none rounded-tl-none container mx-auto container-md">
       <img
         src={image2}
         alt="image"
@@ -59,7 +59,7 @@ const HeroSection = () => {
           features.
         </span>
         <div className="flex items-center font-medium text-[#181818] gap-x-2 pt-2 cursor-pointer group">
-          <Link to="/prototype" className="lg:text-base text-xs">View our prototype</Link>
+          <Link to="/prototype/signup" className="lg:text-base text-xs">View our prototype</Link>
           <GoArrowRight
             size={27}
             className="group-hover:translate-x-2 transition-all ease-in"

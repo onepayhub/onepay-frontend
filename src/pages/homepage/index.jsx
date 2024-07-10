@@ -8,8 +8,7 @@ const HomePage = () => {
       <Navbar />
       <HeroSection />
       <ThirdSection />
-      <SecondSection />
-     
+      <SecondSection />     
     </div>
   );
 };

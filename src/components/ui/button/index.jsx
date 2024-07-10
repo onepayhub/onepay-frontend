@@ -13,6 +13,7 @@ const Button = ({
   className,
   cursor,
   type,
+  disabled,
 }) => {
   const buttonStyle = {
     width,
@@ -27,6 +28,7 @@ const Button = ({
   return (
     <button
       style={buttonStyle}
+      disabled={disabled}
       type={type}
       onClick={onClick}
       className={`${className} lg:text-lg md:text-base text-xs font-semibold px-[10px]  hover:scale-95 transition-all py-[30px]`}

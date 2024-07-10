@@ -17,11 +17,11 @@ const Verify = () => {
 
   return (
     <div className="relative">
-      <Link to='/' className="font-semibold flex flex-col absolute pl-20 text-[#49529b] top-[6%] lg:text-3xl">
+      <Link to='/' className="font-semibold flex flex-col absolute px-6 lg:pl-20 text-[#49529b] top-[4%] lg:top-[6%] lg:text-3xl">
         <span>OnePay</span>
         <span className="text-sm">Enjoy stress free transfers</span>
       </Link>
-      <div className="pl-20 pt-[25rem] text-sm lg:text-base text-[#696969]">
+      <div className="lg:pl-20 px-6 pt-24 lg:pt-[25rem] text-sm lg:text-base text-[#696969]">
         <div className="flex gap-y-4 flex-col">
           <div className="flex items-center gap-x-1">
             <span>Well done</span>

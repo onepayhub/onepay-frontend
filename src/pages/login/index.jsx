@@ -7,8 +7,8 @@ import { Button } from "../../components";
 import { Spinner } from "../../constants/images";
 import { toast } from "react-toastify";
 
-const inputStyle = `py-2 px-4 rounded-[5px] bg-[#f5f5f5] text-[#181818]`;
-const labelStyle = `text-[#49529b] font-normal lg:text-base`;
+const inputStyle = `py-2 px-4 rounded-[5px] bg-[#f5f5f5] text-sm lg:text-base text-[#181818]`;
+const labelStyle = `text-[#49529b] font-normal text-sm lg:text-base`;
 
 const Login = () => {
   const [details, setDetails] = useState({
@@ -85,11 +85,11 @@ const Login = () => {
   };
   return (
     <div className="relative">
-      <Link to='/' className="font-semibold flex flex-col absolute pl-20 text-[#49529b] top-[6%] lg:text-3xl">
+      <Link to='/' className="font-semibold flex flex-col absolute pl-6 lg:pl-20 text-[#49529b] lg:top-[6%] top-[4%] lg:text-3xl">
         <span>OnePay</span>
         <span className="text-sm">Welcome back</span>
       </Link>
-      <div className="w-[40%] pt-[25rem] pl-20 flex justify-center items-start">
+      <div className="lg:w-[40%] pt-24 lg:pt-[25rem] px-6 lg:pl-20 flex justify-center items-start">
         <div className="w-full flex flex-col gap-y-4">
           <div className="flex-col flex gap-y-1">
             <label htmlFor="firstName" className={labelStyle}>
@@ -131,7 +131,7 @@ const Login = () => {
                 <span>Sign in</span>
               )}
             </Button>
-            <div className="flex w-full gap-x-2 pt-6 justfy-between">
+            <div className="flex w-full lg:text-base text-sm  gap-x-2 pt-6 justfy-between">
               <span className="text-[#181818]">Don't have an account? </span>
               <Link to={"/prototype/signup"} className="text-[#49529b]">
                 Sign up

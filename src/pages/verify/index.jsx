@@ -42,11 +42,11 @@ const Verify = () => {
             </span>
             <span className="text-[#49529b] font-medium">{details?.email}</span>
           </div>
-          <div className="flex items-center gap-x-2">
+          <div className="flex lg:flex-row flex-col lg:items-center gap-y-4 lg:gap-x-2">
             <span>
               Please verify by clicking the verification link and then{" "}
             </span>{" "}
-            <Link to="/prototype/signin" className="text-[#49529b] lg:text-lg font-medium">Sign in</Link>
+            <Link to="/prototype/signin" className="text-[#49529b] lg:text-lg font-medium underline underline-offset-4 decoration-[#49529b]">Sign in</Link>
           </div>
         </div>
       </div>

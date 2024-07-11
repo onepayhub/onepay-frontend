@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   states: {
     signupDetails: [],
+    accessToken: "",
   },
 };
 
@@ -13,7 +14,10 @@ export const signupSlice = createSlice({
     setSignupDetails: (state, action) => {
       state.states.signupDetails = action.payload;
     },
+    setAccessToken: (state, action) => {
+      state.states.accessToken = action.payload;
+    },
   },
 });
 
-export const { setSignupDetails } = signupSlice.actions;
+export const { setSignupDetails, setAccessToken } = signupSlice.actions;

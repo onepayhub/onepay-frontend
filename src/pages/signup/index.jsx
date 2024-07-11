@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { setSignupDetails } from "../../slice/signup";
+import { setAccessToken, setSignupDetails } from "../../slice/signup";
 import { generateRandomUID } from "../../hooks/useGenerateId";
 
 import { Spinner } from "../../constants/images";
@@ -98,7 +98,7 @@ const Signup = () => {
           const user = userCredential.user;
           const userId = user.uid;
           const UUID = generateRandomUID(5);
-          console.log(user.accessToken)
+          dispatch(setAccessToken(user.accessToken))
           // save user details and access token for protected routes
           dispatch(setSignupDetails({ firstName, lastName, email }));
           // Store the additional details in the database under the user's ID

@@ -10,7 +10,7 @@ const persistState = {
 };
 export const store = configureStore({
   reducer: {
-    signup: persistReducer(persistState, signupSlice.reducer),
+    auth: persistReducer(persistState, signupSlice.reducer),
   },
   middleware: (() => [thunk]),
 });

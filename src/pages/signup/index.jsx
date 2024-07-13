@@ -93,7 +93,6 @@ const Signup = () => {
       createUserWithEmailAndPassword(authInstance, email, password)
         .then((userCredential) => {
           // User registration successful, continue with storing additional details
-          console.log(userCredential, userCredential.user?.accessToken);
           const user = userCredential.user;
           const userId = user.uid;
           const UUID = generateRandomUID(5);

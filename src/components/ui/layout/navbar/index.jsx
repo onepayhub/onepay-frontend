@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoMdCall, IoMdNotificationsOutline, IoMdSearch } from "react-icons/io";
 import { ProfileImage } from "../../../../constants/images";
 
-const Navbar = () => {
+const Navbar = ({user}) => {
   return (
     <div className="flex w-full">
       <div className="relative md:ml-16 ml-5 flex w-3/4 items-center md:justify-center">
@@ -24,7 +24,7 @@ const Navbar = () => {
           />
           <div className="flex flex-col">
             <span className="text-sm font-normal text-[#181818] md:text-base">
-              Welcome, John
+              Welcome, {user.firstName}
             </span>
           </div>
         </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
           />
           <div className="flex flex-col">
             <span className="text-sm font-normal text-[#181818] md:text-base">
-              Welcome, <br /> John
+              Welcome, <br /> {user.firstName}
             </span>
           </div>
         </div>

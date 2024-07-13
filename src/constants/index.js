@@ -15,5 +15,5 @@ export const sideLinks = [
     icon: Sidebar3,
   },
   { id: 3, link: "Cards", to: "cards", icon: Sidebar4 },
-  { id: 3, link: "Me", to: "Me", icon: Sidebar4 },
+  { id: 4, link: "Me", to: "Me", icon: Sidebar4 },
 ];

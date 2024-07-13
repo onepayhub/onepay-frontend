@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { app } from "../../firebase/config";
+import { app, database } from "../../firebase/config";
+import { getDatabase, ref, get, child } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components";
 import { Spinner } from "../../constants/images";
 import { toast } from "react-toastify";
-import { setAccessToken } from "../../slice/signup";
+import { setAccessToken, setUser } from "../../slice/signup";
 
 const inputStyle = `py-2 px-4 rounded-[5px] bg-[#f5f5f5] text-sm lg:text-base text-[#181818]`;
 const labelStyle = `text-[#49529b] font-normal text-sm lg:text-base`;
@@ -48,15 +49,34 @@ const Login = () => {
   const handleForm = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
   };
+  const getUserDetails = async (userId) => {
+    const userRef = ref(database, "users/" + userId);
+    const userSnapshot = await get(child(userRef, "/"));
+    if (userSnapshot.exists()) {
+      return userSnapshot.val();
+    } else {
+      return null;
+    }
+  };
   const handleLogin = () => {
     const { email, password } = details;
     const error = validate();
     if (!error) {
       setLoading(true);
       signInWithEmailAndPassword(authInstance, email, password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
           const user = userCredential.user;
-          dispatch(setAccessToken(user.accessToken))
+          const userDetails = await getUserDetails(user.uid);
+          dispatch(
+            setUser({
+              firstName: userDetails.first_name,
+              lastName: userDetails.last_name,
+              email: userDetails.email,
+              uuid: userDetails.uuid,
+              phone: userDetails.phone,
+            })
+          );
+          dispatch(setAccessToken(user.accessToken));
           if (user.emailVerified) {
             // User is logged in and email is verified
             // Proceed with the desired action (e.g., redirect to a dashboard)

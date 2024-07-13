@@ -88,7 +88,6 @@ const Signup = () => {
   const handleSubmit = () => {
     const { firstName, lastName, phone, email, password } = details;
     const error = validate();
-    console.log(error);
     if (!error) {
       setLoading(true);
       createUserWithEmailAndPassword(authInstance, email, password)

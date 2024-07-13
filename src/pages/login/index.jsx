@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components";
 import { Spinner } from "../../constants/images";
 import { toast } from "react-toastify";
+import { setAccessToken } from "../../slice/signup";
 
 const inputStyle = `py-2 px-4 rounded-[5px] bg-[#f5f5f5] text-sm lg:text-base text-[#181818]`;
 const labelStyle = `text-[#49529b] font-normal text-sm lg:text-base`;
@@ -55,7 +56,7 @@ const Login = () => {
       signInWithEmailAndPassword(authInstance, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user)
+          dispatch(setAccessToken(user.accessToken))
           if (user.emailVerified) {
             // User is logged in and email is verified
             // Proceed with the desired action (e.g., redirect to a dashboard)

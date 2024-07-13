@@ -53,7 +53,7 @@ const HeroSection = () => {
             One account for all
           </span>
         </div>
-        <span className="text-[#31376d] py-2 text-sm text-center">
+        <span className="text-[#31376d] w-3/4 py-2 text-sm text-center">
           We're tired of the process involved with multiple bank account and
           bank selection, so we're reinventing the fintech space with exciting
           features.

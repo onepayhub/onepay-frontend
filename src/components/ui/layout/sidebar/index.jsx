@@ -44,7 +44,7 @@ const Sidebar = () => {
           ))}
           <span
             onClick={handleLogout}
-            className="mx-auto text-primary mt-36  font-medium flex w-full items-center gap-x-3 rounded-[5px] px-3 py-4 transition-all ease-in hover:cursor-pointer hover:bg-primary hover:bg-opacity-20"
+            className="mx-auto text-primary hidden mt-36  font-medium lg:flex w-full items-center gap-x-3 rounded-[5px] px-3 py-4 transition-all ease-in hover:cursor-pointer hover:bg-primary hover:bg-opacity-20"
           >
             <IoMdLogOut size={23} />
             Log out

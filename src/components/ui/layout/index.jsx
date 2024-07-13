@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
         <div className="z-50 md:h-full w-full md:static fixed bottom-0 md:w-[15%] overflow-hidden bg-[#323b6d]">
           <Sidebar />
         </div>
-        <div className="w-3/4 flex-grow overflow-y-auto bg-[#F8F8F8] p-4 pl-14 pt-36">
+        <div className="w-3/4 flex-grow overflow-y-auto bg-[#F8F8F8] p-4 lg:pl-14 pt-[7rem] lg:pt-36">
           {children}
         </div>
       </div>

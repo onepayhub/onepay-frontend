@@ -52,7 +52,7 @@ const Navbar = ({ user }) => {
         </div>
       </div>
 
-      <div className="ml-auto relative flex w-fit items-center gap-x-10 px-8">
+      <div className="ml-auto relative flex w-fit items-center gap-x-4 lg:gap-x-10 px-8">
         <div className="relative z-20">
           <IoMdNotificationsOutline size={25} color="#181818" />
           <div className="absolute bottom-[16px] text-sm left-[10px] flex h-[20px] w-[20px] items-center justify-center rounded-[50%] bg-secondary font-semibold text-primary">

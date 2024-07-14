@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../../../../../../components/";
 import { LuEyeOff, LuEye } from "react-icons/lu";
+import { AiTwotoneSafetyCertificate } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const AccountDashboard = () => {
@@ -20,14 +21,20 @@ const AccountDashboard = () => {
   }, [showBalance]);
 
   return (
-    <div className="bg-primary shadow-lg mb-10 py-8 px-6 lg:px-10 rounded-[20px]">
+    <div className="bg-[#aeb2e9] shadow-lg mb-10 py-8 px-6 lg:px-10 rounded-[20px]">
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col gap-y-4 items-start">
           <div className="flex items-center gap-x-2">
             {" "}
-            <span className="text-xs lg:text-sm mt-auto">Available Balance</span>
+            <AiTwotoneSafetyCertificate color="#1da829" />
+            <span className="text-xs lg:text-sm mt-auto">
+              Available Balance
+            </span>
             {showBalance ? (
-              <LuEyeOff onClick={handleShowBalance} className="cursor-pointer" />
+              <LuEyeOff
+                onClick={handleShowBalance}
+                className="cursor-pointer"
+              />
             ) : (
               <LuEye onClick={handleShowBalance} className="cursor-pointer" />
             )}
@@ -39,7 +46,9 @@ const AccountDashboard = () => {
         </div>
         <div className="flex flex-col gap-y-4 items-end">
           <div className="flex items-center">
-            <span className="text-xs lg:text-sm mt-auto">Transaction History</span>
+            <span className="text-xs lg:text-sm mt-auto">
+              Transaction History
+            </span>
             <MdOutlineKeyboardArrowRight className="cursor-pointer" size={15} />
           </div>
           <Button className="lg:text-base !px-4 !text-xs !rounded-[30px] flex gap-x-2 items-center">

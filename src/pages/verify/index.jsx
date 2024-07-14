@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Verify = () => {
   const [details, setDetails] = useState({});
   const signupDetails = useSelector(
-    (state) => state.signup.states.signupDetails
+    (state) => state.auth.states.signupDetails
   );
 
   useEffect(() => {

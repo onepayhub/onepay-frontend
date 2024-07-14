@@ -4,18 +4,22 @@ import { sideLinks } from "../../../../constants";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdLogOut } from "react-icons/io";
 import { setAccessToken, setUser } from "../../../../slice/signup";
+import { setShowOnepay } from "../../../../slice/dashboard";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [activeId, setActiveId] = useState(0);
+
   const handleLogout = () => {
     dispatch(setAccessToken(""));
     dispatch(setUser([]));
     navigate("/prototype/signin");
   };
-
+  const handleReset = () => {
+    dispatch(setShowOnepay(false));
+  };
   return (
     <>
       <div className="w-full flex-col gap-y-6 hidden md:flex">
@@ -34,6 +38,7 @@ const Sidebar = () => {
               key={link.id}
               onClick={() => {
                 setActiveId(link.id);
+                handleReset();
               }}
             >
               <img src={link.icon} alt="icon" />

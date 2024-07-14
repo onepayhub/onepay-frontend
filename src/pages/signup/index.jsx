@@ -95,7 +95,7 @@ const Signup = () => {
           // User registration successful, continue with storing additional details
           const user = userCredential.user;
           const userId = user.uid;
-          const UUID = generateRandomUID(5);
+          const UUID = phone.substring(1);
           dispatch(setAccessToken(user.accessToken))
           // save user details and access token for protected routes
           dispatch(setSignupDetails({ firstName, lastName, email }));

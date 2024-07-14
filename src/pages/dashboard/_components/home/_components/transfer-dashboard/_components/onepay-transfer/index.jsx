@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { GoPerson } from "react-icons/go";
 import { Spinner2 } from "../../../../../../../../constants/images";
 import { setShowOnepay } from "../../../../../../../../slice/dashboard";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,21 +29,22 @@ const OnepayTransfer = () => {
       const recipientsRef = ref(database, "users");
       const userSnapshot = await get(child(recipientsRef, "/"));
       const recipients = userSnapshot.val();
-      // console.log(recipients)
       if (recipients) {
-        const recipientList = Object.values(recipients).filter(
-          (recipient) => recipient.uuid === recipientId
-        );
+        const recipientList = Object.values(recipients).filter((recipient) => {
+          const fullName = `${recipient.first_name} ${recipient.last_name}`.toLowerCase();
+          return recipient.uuid.includes(recipientId) || fullName.includes(recipientId.toLowerCase());
+        });
         setRecipientData(recipientList);
-        setLoading(false);
       } else {
         setRecipientData([]);
       }
       setLoading(false);
     } else {
       setRecipientData([]);
+      setLoading(false);
     }
   };
+
   useEffect(() => {
     handleGetUser();
   }, [recipientId]);
@@ -53,8 +55,8 @@ const OnepayTransfer = () => {
       (recipient) => recipient.uuid === user.uuid
     );
     if (matchingRecipient) {
-      setLoading(false);
       setError(matchingRecipient.uuid);
+      setLoading(false);
     } else {
       setError(null); // Reset error state
     }
@@ -78,7 +80,7 @@ const OnepayTransfer = () => {
           <span className="lg:text-lg text-base font-medium">
             Recipient Account
           </span>
-          <div className="w-1/2">
+          <div className="w-full lg:w-1/2">
             <input
               type="text"
               className="px-3 py-4 bg-[#dfdfdf] lg:w-full rounded-[5px]"
@@ -98,14 +100,22 @@ const OnepayTransfer = () => {
               </div>
             )}
           </div>
-          {(!error && recipientData.length) > 0 ? (
+          {!error && recipientData.length > 0 ? (
             <div>
               {recipientData.map((recipient) => (
-                <div key={recipient.id}>
-                  <p>
-                    {recipient.first_name} {recipient.last_name}
-                  </p>
-                  <p>{recipient.uuid}</p>
+                <div key={recipient.id} className="flex items-center gap-x-4">
+                  {" "}
+                  <div className="bg-[#bebebe] rounded-[50%] p-2">
+                    <GoPerson size={30} color="#fff" />
+                  </div>
+                  <div className="flex flex-col space-y-2 ">
+                    <p className="uppercase lg:text-lg text-sm font-normal tracking-wider">
+                      {recipient.first_name} {recipient.last_name}
+                    </p>
+                    <p className="text-lightgray lg:text-base text-xs tracking-widest">
+                      {recipient.uuid}
+                    </p>
+                  </div>
                   {/* Add more recipient information as needed */}
                 </div>
               ))}

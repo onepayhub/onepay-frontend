@@ -10,6 +10,7 @@ export { default as image0 } from "../../assets/images/image0.png";
 export { default as image1 } from "../../assets/images/image1.png";
 export { default as cost } from "../../assets/images/cost.svg";
 export { default as Spinner } from "../../assets/images/spinner.svg";
+export { default as Spinner2 } from "../../assets/images/spinner2.svg";
 export { default as ProfileImage } from "../../assets/images/profileimage.png";
 export { default as Sidebar1 } from "../../assets/images/sidebar1.png";
 export { default as Sidebar2 } from "../../assets/images/sidebar2.png";

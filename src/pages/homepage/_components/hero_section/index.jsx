@@ -17,32 +17,32 @@ const HeroSection = () => {
       <img
         src={image2}
         alt="image"
-        className="absolute w-[70px] lg:w-[100px] left-[0%] lg:left-[2%] bottom-[30%]"
+        className="absolute w-[50px] lg:w-[100px] left-[0%] lg:left-[2%] bottom-[30%]"
       />
       <img
         src={image6}
         alt="image"
-        className="absolute w-[70px] lg:w-[100px] right-0 top-[0%]"
+        className="absolute w-[50px] lg:w-[100px] right-0 top-[0%]"
       />
       <img
         src={image7}
         alt="image"
-        className="absolute w-[70px] lg:w-[100px] left-[20%] lg:left-[11%] bottom-[7%]"
+        className="absolute w-[50px] lg:w-[100px] left-[20%] lg:left-[11%] bottom-[7%]"
       />
       <img
         src={image9}
         alt="image"
-        className="absolute w-[70px] lg:w-[100px] left-2 bottom-[2%]"
+        className="absolute w-[50px] lg:w-[100px] left-2 bottom-[2%]"
       />
       <img
         src={image5}
         alt="image"
-        className="absolute w-[70px] lg:w-[100px] bottom-[3%] right-[3%] md:right-[1%]"
+        className="absolute w-[50px] lg:w-[100px] bottom-[3%] right-[3%] md:right-[1%]"
       />
       <img
         src={image4}
         alt="image"
-        className="absolute w-[70px] lg:w-[100px] bottom-[20%] lg:bottom-[30%] right-[5%]"
+        className="absolute w-[50px] lg:w-[100px] bottom-[20%] lg:bottom-[30%] right-[5%]"
       />
       <div className="flex gap-y-2 justify-center h-[50vh]  mx-auto  items-center flex-col">
         <div className="flex flex-col tracking-widest">
@@ -53,7 +53,7 @@ const HeroSection = () => {
             One account for all
           </span>
         </div>
-        <span className="text-[#31376d] w-3/4 py-2 text-sm text-center">
+        <span className="text-[#31376d] py-2 text-sm text-center">
           We're tired of the process involved with multiple bank account and
           bank selection, so we're reinventing the fintech space with exciting
           features.

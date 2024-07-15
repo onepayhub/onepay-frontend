@@ -8,7 +8,7 @@ const SecondSection = () => {
   return (
     <>
     <div className="pb-10 flex lg:flex-row flex-col items-center justify-between container mx-auto container-md">
-      <div className="relative justify-center w-full items-center lg:items-start lg:justify-start flex bg-[#eee] rounded-[20px] py-10 px-16 gap-y-3 mt-10 lg:w-1/2 flex-col">
+      <div className="relative justify-center w-full items-center lg:items-start lg:justify-start flex bg-[#eee] rounded-[20px] py-10 mx-auto lg:px-16 gap-y-3 mt-10 lg:w-1/2 flex-col">
         <img src={cost} className="absolute w-[250px] lg:block hidden right-0" alt="" />
         <img src={image1} alt="save" className="w-[60px]" />
         <span className="lg:text-2xl lg:text-start text-center text-[#49529b]">
@@ -31,7 +31,7 @@ const SecondSection = () => {
           </div>
         </div>
       </div>
-      <div className="flex bg-[#eee] items-center justify-center rounded-[20px] py-10 px-16 gap-y-3 mt-10 lg:w-[40%] flex-col">
+      <div className="flex bg-[#eee] items-center justify-center rounded-[20px] py-10 w-full lg:px-16 gap-y-3 mt-10 lg:w-[40%] flex-col">
         <img src={image1} alt="save" className="w-[60px]" />
         <span className="lg:text-2xl text-[#49529b]">Get notified of launch</span>
         <div className="flex flex-col gap-y-2 items-center">

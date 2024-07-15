@@ -66,7 +66,7 @@ const Navbar = () => {
               <div className="flex items-center justify-center">
                 <Link
                   to="#"
-                  className=" text-lg font-normal text-lightgray"
+                  className="text-lgfont-normal text-lightgray"
                 >
                   Business
                 </Link>
@@ -76,7 +76,7 @@ const Navbar = () => {
               <div className="flex items-center justify-center">
                 <Link
                   to="#"
-                  className=" text-lg font-normal text-lightgray"
+                  className="text-lg font-normal text-lightgray"
                 >
                  Company
                 </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
           </ul>
           <div className="mt-20 flex w-full flex-col items-center space-y-6 text-base">
           
-            <Link to="/signup" className="mx-auto w-[100%]">
+            <Link to="/prototype/signup" className="mx-auto w-[100%]">
               <Button
                 className="w-full !text-base font-semibold  text-primary hover:scale-95"
                 children="Sign up"

@@ -1,7 +1,7 @@
 import React from "react";
-import { LiaPiggyBankSolid } from "react-icons/lia";
 import { BsPersonSquare } from "react-icons/bs";
 import { FaPiggyBank } from "react-icons/fa";
+import { MdElectricBolt } from "react-icons/md";
 
 const NoticeDashboard = () => {
   return (
@@ -21,7 +21,7 @@ const NoticeDashboard = () => {
             <span className="text-xs lg:text-base">Request</span>
           </div>
           <div className="flex flex-col items-center gap-y-1 hover:cursor-pointer hover:scale-105 transition-all ease-in">
-            <LiaPiggyBankSolid size={30} color="#3745c0" />
+            <MdElectricBolt size={30} color="#3745c0" />
             <span className="text-xs text-nowrap lg:text-base">
               Services Offered (Share cost)
             </span>

@@ -66,6 +66,7 @@ const Sidebar = () => {
             key={link.id}
             onClick={() => {
               setActiveId(link.id);
+              handleReset();
             }}
           >
             <img src={link.icon} alt="icon" />

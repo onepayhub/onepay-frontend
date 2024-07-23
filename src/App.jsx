@@ -1,9 +1,24 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Dashboard, HomePage, Login, Signup, Verified, Verify } from "./pages/";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/protectedRoute";
+import { useEffect } from "react";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleBackButton = () => {
+      navigate(-1); // Navigates back to the previous page using React Router
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [navigate]);
+
   return (
     <>
       <Routes>

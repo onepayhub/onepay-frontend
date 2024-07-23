@@ -13,7 +13,7 @@ const RequestModal = () => {
   return (
     <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px]">
       <span
-        className="text-xl cursor-pointer text-right lg:pt-4 mr-0"
+        className="text-xl cursor-pointer text-right lg:pt-4 pr-3 lg:mr-0"
         onClick={handleCloseModal}
       >
         x
@@ -32,7 +32,7 @@ const RequestModal = () => {
               name="amount"
               id="amount"
               placeholder="703393RSWER"
-              className="px-4 py-2 border text-sm lg:text-base border-[#5F5F5F] rounded-[5px]"
+              className="px-4 py-2 border uppercase text-sm lg:text-base border-[#5F5F5F] rounded-[5px]"
             />
           </div>
           <div className="flex flex-col gap-y-2">
@@ -83,7 +83,7 @@ const RequestModal = () => {
             <span className="text-lightgray text-xs">
               I confirm that the information provided is accurate and I agree to
               the{" "}
-              <span className="text-lightblue underline underline-offset-4 cursor-pointer">
+              <span className="text-lightblue underline underline-offset-[3px] cursor-pointer">
                 Terms and Conditions
               </span>{" "}
               of the payment request or debt owed.

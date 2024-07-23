@@ -13,7 +13,7 @@ const TransferDashboard = () => {
   };
 
   return (
-    <div className="bg-primary mb-10 shadow-lg py-8 px-6 lg:px-10 rounded-[20px]">
+    <div className="bg-primary mb-6 shadow-lg py-8 px-6 lg:px-10 rounded-[20px]">
       <div className="flex flex-col gap-y-5">
         <span className="text-sm lg:text-base">Money Transfer</span>
         <div className="flex items-center justify-between">

@@ -4,6 +4,7 @@ const initialState = {
   states: {
     showOnepay: false,
     accountDetails: [],
+    transferDetails: {}
   },
 };
 
@@ -17,7 +18,10 @@ export const dashboardSlice = createSlice({
     setAccountDetails: (state, action) => {
       state.states.accountDetails = action.payload;
     },
+    setTransferDetails: (state, action) => {
+      state.states.transferDetails = action.payload;
+    },
   },
 });
 
-export const { setShowOnepay, setAccountDetails } = dashboardSlice.actions;
+export const { setShowOnepay, setAccountDetails, setTransferDetails } = dashboardSlice.actions;

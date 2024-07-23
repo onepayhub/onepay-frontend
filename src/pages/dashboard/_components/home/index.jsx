@@ -3,7 +3,7 @@ import { AccountDashboard, ServicesDashboard, TransferDashboard } from "./_compo
 
 const Home = () => {
   return (
-    <div>
+    <div className="h-screen lg:h-full">
       <AccountDashboard />
       <TransferDashboard />
       <ServicesDashboard />

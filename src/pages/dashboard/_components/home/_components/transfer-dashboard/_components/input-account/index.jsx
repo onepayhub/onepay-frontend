@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { GoPerson } from "react-icons/go";
 import { Button } from "../../../../../../../../components";
+import { setTransferDetails } from "../../../../../../../../slice/dashboard";
+import { useDispatch } from "react-redux";
 
 const InputAccount = ({ details, handleBankLists }) => {
-  const [transferDetails, setTransferDetails] = useState({
+  const dispatch = useDispatch()
+  const [transferDetails, setDetails] = useState({
     amount: "",
     remark: "",
   });
   const [error, setError] = useState("");
-console.log(transferDetails)
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setTransferDetails((prevState) => ({
+    setDetails((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -20,8 +22,9 @@ console.log(transferDetails)
     if (transferDetails.amount === "") {
       setError("Please enter the amount.");
     }
-    if (transferDetails.amount !== "") {
+    if (error === "") {
       setError("");
+      dispatch(setTransferDetails(transferDetails))
       handleBankLists(true);
     }
   };
@@ -60,15 +63,15 @@ console.log(transferDetails)
             <input
               type="text"
               name="remark"
-              placeholder="What's this for?"
+              placehoder="What's this for?"
               className="px-5 py-4 rounded-[5px]"
               onChange={handleInputChange}
             />
           </div>
         </div>
-        <div className="flex justify-center items-center w-full mt-16">
+        <div className="flex justify-center items-center w-1/2 mx-auto mt-16">
           {" "}
-          <Button className="lg:w-3/4 w-full" onClick={handleConfirm}>
+          <Button className="w-full" onClick={handleConfirm}>
             Confirm
           </Button>
         </div>

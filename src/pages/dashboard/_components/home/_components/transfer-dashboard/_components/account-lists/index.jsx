@@ -40,7 +40,7 @@ const AccountLists = () => {
   const bankName = `text-xs lg:text-sm`;
   const accountNo = `text-sm lg:text-base`;
   return (
-    <div className="pt-20 w-full lg:pl-4 flex lg:flex-row flex-col gap-x-10">
+    <div className="pt-20 w-full lg:pl-4 flex lg:flex-row flex-col gap-x-10 h-screen lg:h-full">
       <div className="w-full flex lg:w-1/2 flex-col gap-y-4">
         <span className="text-lightgray">Select Account</span>
 
@@ -102,7 +102,7 @@ const AccountLists = () => {
         </div>
         <div
           className="flex w-full px-5 items-start bg-[#eee] py-3 lg:py-6 justify-between cursor-pointer transition-all hover:scale-95 ease-in"
-          onClick={() => handleSelected("FCMB Bank", "0231487534")}
+          onClick={() => handleSelected("FCMB", "0231487534")}
         >
           <div className="flex flex-col gap-y-1">
             <span className="text-[#181818] uppercase">
@@ -110,7 +110,7 @@ const AccountLists = () => {
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
               <span className={accountNo}>0231487534</span>
-              <span className={bankName}>FCMB Bank</span>
+              <span className={bankName}>FCMB</span>
             </div>
             <span></span>
           </div>

@@ -30,7 +30,7 @@ const TransferDashboard = () => {
           </div>
           <div className="flex flex-col items-center gap-y-1 hover:cursor-pointer hover:scale-105 transition-all ease-in">
             <FaPiggyBank size={30} color="#3745c0" />
-            <span className="text-xs lg:text-base">Withdraw</span>
+            <span className="text-xs lg:text-base">Request</span>
           </div>
         </div>
       </div>

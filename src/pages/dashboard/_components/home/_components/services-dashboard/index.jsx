@@ -10,7 +10,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 
 const ServicesDashboard = () => {
   return (
-    <div className="bg-primary shadow-lg py-8 lg:px-10 px-6 rounded-[20px]">
+    <div className="bg-primary lg:mb-10 mb-6 shadow-lg py-8 lg:px-10 px-6 rounded-[20px]">
       <div className="flex flex-col gap-y-5">
         <span className="lg:text-base text-sm">Services</span>
         <div className="grid grid-cols-5 gap-10 gap-x-12 lg:gap-x-10">

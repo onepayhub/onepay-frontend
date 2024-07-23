@@ -1,12 +1,13 @@
 import React from "react";
-import { AccountDashboard, ServicesDashboard, TransferDashboard } from "./_components";
+import { AccountDashboard, NoticeDashboard, ServicesDashboard, TransferDashboard } from "./_components";
 
 const Home = () => {
   return (
-    <div className="h-screen lg:h-full">
+    <div className="h-[120vh] lg:h-screen">
       <AccountDashboard />
       <TransferDashboard />
       <ServicesDashboard />
+      <NoticeDashboard />
     </div>
   );
 };

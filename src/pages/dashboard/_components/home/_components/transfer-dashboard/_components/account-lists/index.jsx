@@ -49,7 +49,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("Onepay Wallet", details?.account)}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.first_name} {details?.last_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
@@ -68,7 +68,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("Guaranty Trust Bank", "0561254922")}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.last_name} {details?.first_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
@@ -87,7 +87,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("Access Bank", "0733528954")}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.first_name} {details?.last_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
@@ -105,7 +105,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("FCMB", "0231487534")}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.last_name} {details?.first_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
@@ -123,7 +123,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("First Bank", "0423895612")}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.first_name} {details?.last_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
@@ -141,7 +141,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("Moniepoint", "0194678223")}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.first_name} {details?.last_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">
@@ -159,7 +159,7 @@ const AccountLists = () => {
           onClick={() => handleSelected("OPay", "7033939939")}
         >
           <div className="flex flex-col gap-y-1">
-            <span className="text-[#181818] uppercase">
+            <span className="text-[#181818] text-sm lg:text-base uppercase">
               {details?.last_name} {details?.first_name}
             </span>
             <div className="flex items-center text-[#8b8b8b] gap-x-2">

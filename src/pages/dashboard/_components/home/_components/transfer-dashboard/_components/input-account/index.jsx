@@ -21,8 +21,9 @@ const InputAccount = ({ details, handleBankLists }) => {
   const handleConfirm = () => {
     if (transferDetails.amount === "") {
       setError("Please enter the amount.");
+      return;
     }
-    if (error === "") {
+    else {
       setError("");
       dispatch(setTransferDetails(transferDetails))
       handleBankLists(true);
@@ -30,7 +31,7 @@ const InputAccount = ({ details, handleBankLists }) => {
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 h-screen lg:h-full">
       <div className="lg:w-5/6 mx-auto">
         <div className="flex flex-col gap-y-2 items-center">
           <div className="bg-[#bebebe] rounded-[50%] p-4">
@@ -42,34 +43,34 @@ const InputAccount = ({ details, handleBankLists }) => {
           <span className="tracking-wider lg:text-lg">{details.account}</span>
         </div>
 
-        <div className="flex gap-y-8 mt-10 px-16 flex-col justify-center items-center">
+        <div className="flex gap-y-8 mt-6 px-16 flex-col justify-center items-center">
           <div className="flex flex-col gap-y-1 lg:w-3/4">
-            <label htmlFor="amount" className="text-[#181818]">
+            <label htmlFor="amount" className="text-[#181818] text-sm lg:text-base">
               Amount
             </label>
             <input
               type="text"
               name="amount"
-              placeholder="10.00 - 6,000,000.00"
-              className="px-5 py-4 rounded-[5px]"
+              placeholder="10.00 - 5,000,000.00"
+              className="px-2 py-2 lg:py-4 border placeholder:text-sm border-[#5f5f5f] rounded-[5px]"
               onChange={handleInputChange}
             />
             {error !== "" && <p className="text-red-500 text-sm">{error}</p>}
           </div>
           <div className="flex flex-col gap-y-1 lg:w-3/4">
-            <label htmlFor="remark" className="text-[#181818]">
+            <label htmlFor="remark" className="text-[#181818] text-sm lg:text-base">
               Remark
             </label>
             <input
               type="text"
               name="remark"
               placehoder="What's this for?"
-              className="px-5 py-4 rounded-[5px]"
+              className="px-2 py-2 lg:py-4 border border-[#5f5f5f] rounded-[5px]"
               onChange={handleInputChange}
             />
           </div>
         </div>
-        <div className="flex justify-center items-center w-1/2 mx-auto mt-16">
+        <div className="flex justify-center items-center w-5/6 mx-auto mt-10">
           {" "}
           <Button className="w-full" onClick={handleConfirm}>
             Confirm

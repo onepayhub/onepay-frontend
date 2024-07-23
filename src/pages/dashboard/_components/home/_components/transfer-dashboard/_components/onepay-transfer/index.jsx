@@ -108,13 +108,13 @@ const OnepayTransfer = () => {
       {!showAmoountInput && !showAccounts && (
         <div className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-y-4 mt-16 px-3">
-            <span className="lg:text-lg text-base font-medium">
+            <span className="lg:text-lg text-sm font-medium">
               Recipient Account
             </span>
             <div className="w-full lg:w-1/2">
               <input
                 type="text"
-                className="px-3 py-4 bg-[#dfdfdf] lg:w-full rounded-[5px]"
+                className="px-3 py-3 lg:py-4 bg-[#dfdfdf] text-sm lg:w-full rounded-[5px]"
                 placeholder="Phone No or Account Name"
                 value={recipientId}
                 onChange={handleInputChange}

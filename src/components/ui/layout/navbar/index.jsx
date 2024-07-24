@@ -17,7 +17,6 @@ const Navbar = ({ user }) => {
   const allNotification = useSelector(
     (state) => state?.dashboard.states.notificationData
   );
-  console.log(notificationLength)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showOption, setShowOption] = useState(false);

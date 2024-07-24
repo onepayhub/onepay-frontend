@@ -35,15 +35,39 @@ const Notifications = () => {
             )}
           </span>
         </div>
-        <div>
+        <div className="flex flex-col gap-y-4 animate-slide_right">
           {allNotification.map((value, i) => (
-            <div key={i}>
-              <span>{value.notificationData.reason}</span>
-              <span>{value.notificationData.title}</span>
-              <span>{value.notificationData.amount}</span>
-              <div>
-              <span>{value.notificationData.userDetails?.firstName}</span>
-              <span>{value.notificationData.userDetails?.lastName}</span>
+           
+            <div
+              key={i}
+              className="flex w-full items-start justify-between px-6 bg-[#eee] cursor-pointer rounded-[10px] transition-all ease-in"
+            >
+              <div className="flex lg:flex-row flex-col w-full lg:items-center gap-y-2 lg:gap-x-3 py-2">
+                {!value.notificationData.isRread && (
+                  <div className="h-[8px] w-[9px] rounded-[50%] bg-lightblue" />
+                )}
+                <div className="flex w-full flex-col gap-y-2">
+                  <span className="text-sm lg:text-base capitalize font-semibold text-[#181818]">
+                    {value.notificationData.title}
+                  </span>
+
+                  <span className="lg:w-3/4 text-sm lg:text-base font-normal text-[#181818]">
+                    {value.notificationData.reason}
+                  </span>
+                  <span className="lg:text-base text-xs ">Amount: ₦{value.notificationData.amount}</span>
+                </div>
+                <div className="flex flex-col lg:text-base text-xs lg:px-5">
+                  <div>
+                  <span className="mr-2">Sender:</span>
+                  <span className="mr-1">
+                    {value.notificationData.userDetails?.firstName}
+                  </span>
+                  <span>{value.notificationData.userDetails?.lastName}</span>
+                  </div>
+                  <div>
+                  {value.notificationData.date}
+                  </div>
+                </div>
               </div>
             </div>
           ))}

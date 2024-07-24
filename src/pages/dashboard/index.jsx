@@ -16,7 +16,6 @@ const Dashboard = () => {
   const allNotification = useSelector(
     (state) => state?.dashboard.states.notificationData
   );
-  console.log(allNotification);
   const showNotification = useSelector(
     (state) => state?.dashboard.states.showNotification
   );

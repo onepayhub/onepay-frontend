@@ -154,7 +154,7 @@ const Signup = () => {
           if (error.code === "auth/invalid-email") {
             toast.warn("Invalid email, try again");
           }
-          console.log(error.code);
+          console.log(error);
         });
     }
   };

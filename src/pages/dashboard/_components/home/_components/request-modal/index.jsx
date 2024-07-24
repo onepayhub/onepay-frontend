@@ -28,7 +28,12 @@ const RequestModal = () => {
     reason: "",
     agreeTerms: false,
   });
-  console.log(userDetails.uuid === details.recipientId)
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
@@ -139,6 +144,7 @@ const RequestModal = () => {
             reason: details.reason,
             userId: userId,
             isRead: false,
+            date: formattedDate,
             userDetails,
           };
 
@@ -146,7 +152,7 @@ const RequestModal = () => {
             .then(() => {
               setLoading(false);
               toast.success("Notification sent successfully!");
-              handleReset()
+              handleReset();
             })
             .catch((error) => {
               setLoading(false);

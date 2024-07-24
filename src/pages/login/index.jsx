@@ -66,9 +66,11 @@ const Login = () => {
       signInWithEmailAndPassword(authInstance, email, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
+          
           const userDetails = await getUserDetails(user.uid);
           dispatch(
             setUser({
+              id: user.uid,
               firstName: userDetails.first_name,
               lastName: userDetails.last_name,
               email: userDetails.email,

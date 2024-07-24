@@ -1,14 +1,141 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 import { setShowRequestModal } from "../../../../../../slice/dashboard";
 import { Button } from "../../../../../../components";
+import { ref, push, set, get } from "firebase/database";
+import { database } from "../../../../../../firebase/config";
 
 const RequestModal = () => {
+  const user = useSelector((state) => state.auth.states.user);
+  const [userDetails, setUserDetails] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    uuid: ""
+  })
+  const [details, setDetails] = useState({
+    title: "Payment Request",
+    recipientId: "",
+    amount: "",
+    reason: "",
+  });
+  const [error, setError] = useState({
+    recipientIdError: "",
+    amountError: "",
+    reasonError: "",
+  });
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (user) {
+      setUserDetails({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        phone: user.phone || "",
+        uuid: user.uuid || "",
+      });
+    }
+  }, []);
+
+  const validate = () => {
+    let isError = false;
+    const errors = {
+      recipientIdError: "",
+      amountError: "",
+      reasonError: "",
+    };
+
+    if (!details.recipientId) {
+      isError = true;
+      errors.recipientIdError = "Please enter recipient's id";
+    }
+    if (!details.amount) {
+      isError = true;
+      errors.amountError = "Please enter required amount";
+    }
+    if (!details.reason) {
+      isError = true;
+      errors.reasonError = "Please enter reason for request";
+    }
+
+    setError({ ...error, ...errors });
+    return isError;
+  };
+
+  const handleForm = (e) => {
+    setDetails({ ...details, [e.target.name]: e.target.value });
+  };
+  const handleReset = () => {
+    setDetails({
+      id: "",
+      amount: "",
+      reason: "",
+    });
+  };
   const handleCloseModal = () => {
     dispatch(setShowRequestModal(false));
+  };
+
+  const handleSumbit = async () => {
+    console.log("Starting handleSumbit function");
+
+    const error = validate();
+    if (!error) {
+      console.log("Validation passed");
+
+      console.log("Database object:", database);
+
+      const usersRef = ref(database, "users");
+
+      try {
+        const usersSnapshot = await get(usersRef);
+
+        let userId = null;
+
+        usersSnapshot.forEach((userSnapshot) => {
+          const userData = userSnapshot.val();
+          if (userData.uuid === details.recipientId) {
+            userId = userSnapshot.key;
+            return; // Exit the forEach loop once the user is found
+          }
+        });
+
+        if (userId) {
+          console.log("User found with recipientId:", userId);
+
+          const notificationsRef = ref(database, "notifications");
+          const newNotificationRef = push(notificationsRef);
+
+          const notificationData = {
+            title: "Payment Request",
+            recipientId: details.recipientId,
+            amount: details.amount,
+            reason: details.reason,
+            userId: userId,
+            isRead: false,
+            userDetails
+          };
+
+          set(newNotificationRef, notificationData)
+            .then(() => {
+              console.log("Notification sent successfully!");
+            })
+            .catch((error) => {
+              console.error("Error sending notification:", error);
+            });
+        } else {
+          console.log(
+            "User not found for the recipientId:",
+            details.recipientId
+          );
+          // Handle this case, show an error message, etc.
+        }
+      } catch (error) {
+        console.error("Error searching for user with recipientId:", error);
+      }
+    }
   };
   return (
     <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px]">
@@ -24,19 +151,29 @@ const RequestModal = () => {
         </span>
         <div className="lg:pr-20 flex flex-col gap-y-6">
           <div className="flex flex-col gap-y-2">
-            <label htmlFor="" className="text-[#181818] text-xs lg:text-sm">
+            <label
+              htmlFor="recipientId"
+              className="text-[#181818] text-xs lg:text-sm"
+            >
               Recepient's Id
             </label>
             <input
               type="text"
-              name="amount"
-              id="amount"
-              placeholder="703393RSWER"
+              name="recipientId"
+              id="recipientId"
+              placeholder="7033936609"
+              onChange={handleForm}
               className="px-4 py-2 border uppercase text-sm lg:text-base border-[#5F5F5F] rounded-[5px]"
             />
+            <span className="text-xs text-[#e62e2e]">
+              {error.recipientIdError}
+            </span>
           </div>
           <div className="flex flex-col gap-y-2">
-            <label htmlFor="" className="text-[#181818] text-xs lg:text-sm">
+            <label
+              htmlFor="amount"
+              className="text-[#181818] text-xs lg:text-sm"
+            >
               Amount
             </label>
             <input
@@ -44,21 +181,28 @@ const RequestModal = () => {
               name="amount"
               id="amount"
               placeholder="Amount"
+              onChange={handleForm}
               className="px-4 py-2 text-sm lg:text-base border border-[#5F5F5F] rounded-[5px]"
             />
+            <span className="text-xs text-[#e62e2e]">{error.amountError}</span>
           </div>
 
           <div className="flex flex-col gap-y-2">
-            <label htmlFor="" className="text-[#181818] text-xs lg:text-sm">
+            <label
+              htmlFor="reason"
+              className="text-[#181818] text-xs lg:text-sm"
+            >
               Description / Reason
             </label>
             <textarea
               type="text"
-              name="amount"
-              id="amount"
+              name="reason"
+              id="reason"
               placeholder="Brief description on reason for request"
+              onChange={handleForm}
               className="px-4 py-2 text-sm lg:text-base border border-[#5F5F5F] rounded-[5px]"
             />
+            <span className="text-xs text-[#e62e2e]">{error.reasonError}</span>
           </div>
           <div className="flex flex-col gap-y-2 text-sm">
             <label htmlFor="document" className="text-[#181818] space-y-2">
@@ -94,10 +238,13 @@ const RequestModal = () => {
               className="w-full"
               backgroundColor="transparent"
               textColor="#3745c0"
+              onClick={handleReset}
             >
               Reset
             </Button>
-            <Button className="w-full">Submit</Button>
+            <Button className="w-full" onClick={handleSumbit}>
+              Submit
+            </Button>
           </div>
         </div>
       </div>

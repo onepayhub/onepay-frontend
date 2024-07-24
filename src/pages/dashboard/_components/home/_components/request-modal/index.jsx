@@ -10,6 +10,7 @@ import { Spinner } from "../../../../../../constants/images";
 
 const RequestModal = () => {
   const titleRef = useRef(null);
+  const bankRef = useRef(null)
   const recipientIdRef = useRef(null);
   const amountRef = useRef(null);
   const reasonRef = useRef(null);
@@ -22,12 +23,14 @@ const RequestModal = () => {
     uuid: "",
   });
   const [details, setDetails] = useState({
+    bank: "",
     title: "",
     recipientId: "",
     amount: "",
     reason: "",
     agreeTerms: false,
   });
+  console.log(details)
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -37,6 +40,7 @@ const RequestModal = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
+    bankError: "",
     titleError: "",
     recipientIdError: "",
     amountError: "",
@@ -59,6 +63,7 @@ const RequestModal = () => {
   const validate = () => {
     let isError = false;
     const errors = {
+      bankError: "",
       titleError: "",
       recipientIdError: "",
       amountError: "",
@@ -72,6 +77,10 @@ const RequestModal = () => {
     if (!details.recipientId) {
       isError = true;
       errors.recipientIdError = "Please enter recipient's id";
+    }
+    if (!details.bank) {
+      isError = true;
+      errors.bankError = "Please enter recipient's id";
     }
     if (details.recipientId === userDetails.uuid) {
       isError = true;
@@ -102,6 +111,7 @@ const RequestModal = () => {
   const handleReset = () => {
     titleRef.current.value = "";
     recipientIdRef.current.value = "";
+    bankRef.current.value = "";
     amountRef.current.value = "";
     reasonRef.current.value = "";
     setDetails({
@@ -139,6 +149,7 @@ const RequestModal = () => {
 
           const notificationData = {
             title: details.title,
+            bank: details.bank,
             recipientId: details.recipientId,
             amount: details.amount,
             reason: details.reason,
@@ -151,12 +162,12 @@ const RequestModal = () => {
           set(newNotificationRef, notificationData)
             .then(() => {
               setLoading(false);
-              toast.success("Notification sent successfully!");
+              toast.success("Request sent successfully!");
               handleReset();
             })
             .catch((error) => {
               setLoading(false);
-              toast.error("Error sending notification");
+              toast.error("Error sending request");
               console.log(error);
             });
         } else {
@@ -222,6 +233,21 @@ const RequestModal = () => {
             <span className="text-xs text-[#e62e2e]">
               {error.recipientIdError}
             </span>
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <label htmlFor="bank" className="text-[#181818] text-xs lg:text-sm">
+              Preferred Bank  <span className="text-lightgray">(Enter preferred bank name or "any")</span>
+            </label>
+            <input
+              type="text"
+              name="bank"
+              id="bank"
+              ref={bankRef}
+              placeholder="Amount"
+              onChange={handleForm}
+              className="px-4 py-2 text-sm lg:text-base border border-[#5F5F5F] rounded-[5px]"
+            />
+            <span className="text-xs text-[#e62e2e]">{error.bankError}</span>
           </div>
           <div className="flex flex-col gap-y-2">
             <label

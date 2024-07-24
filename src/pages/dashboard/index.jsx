@@ -59,7 +59,7 @@ const Dashboard = () => {
       {showNotification && <Notifications />}
       {!(showOnepay || showNotification) && <Home />}
       {showRequestModal && (
-        <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[10%] bottom-0 overflow-auto right-0 left-0 lg:left-[35%]">
+        <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[10%] h-screen bottom-0 overflow-auto right-0 left-0 lg:left-[35%]">
           {" "}
           <RequestModal />
         </div>

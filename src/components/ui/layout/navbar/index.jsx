@@ -10,7 +10,7 @@ import { ProfileImage } from "../../../../constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAccessToken, setUser } from "../../../../slice/signup";
-import { setShowNotification } from "../../../../slice/dashboard";
+import { setShowNotification, setShowOnepay } from "../../../../slice/dashboard";
 
 const Navbar = ({ user }) => {
   const [notificationLength, setNotificationLength] = useState();
@@ -31,6 +31,7 @@ const Navbar = ({ user }) => {
   };
   const handleNotification = () => {
     dispatch(setShowNotification(true))
+    dispatch(setShowOnepay(false))
   }
   useEffect(() => {
     setNotificationLength(allNotification.length);

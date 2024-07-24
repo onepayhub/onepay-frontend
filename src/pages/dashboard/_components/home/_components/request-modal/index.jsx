@@ -184,7 +184,7 @@ const RequestModal = () => {
     }
   };
   return (
-    <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px]">
+    <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px] overflow-auto lg:h-fit h-screen">
       <span
         className="text-xl cursor-pointer text-right lg:pt-4 pr-3 lg:mr-0"
         onClick={handleCloseModal}

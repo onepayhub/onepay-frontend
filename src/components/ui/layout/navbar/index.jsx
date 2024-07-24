@@ -17,6 +17,7 @@ const Navbar = ({ user }) => {
   const allNotification = useSelector(
     (state) => state?.dashboard.states.notificationData
   );
+  console.log(notificationLength)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showOption, setShowOption] = useState(false);
@@ -34,7 +35,7 @@ const Navbar = ({ user }) => {
   }
   useEffect(() => {
     setNotificationLength(allNotification.length);
-  }, []);
+  }, [allNotification]);
   return (
     <div className="flex w-full">
       <div className="relative md:ml-16 ml-5 flex w-3/4 items-center md:justify-center">

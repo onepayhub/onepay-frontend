@@ -55,7 +55,7 @@ const Dashboard = () => {
       {showOnepay && <OnepayTransfer />}
       {showNotification && <Notifications />}
       {!(showOnepay || showNotification) && <Home />}
-      {showRequestModal && <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[20%] bottom-0 h-screen overflow-auto right-0 left-0 lg:left-[35%]"> <RequestModal /></div>}
+      {showRequestModal && <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[20%] bottom-0 overflow-auto right-0 left-0 lg:left-[35%]"> <RequestModal /></div>}
     </Layout>
   );
 };

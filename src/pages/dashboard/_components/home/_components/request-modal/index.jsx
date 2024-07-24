@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 import { setShowRequestModal } from "../../../../../../slice/dashboard";
 import { Button } from "../../../../../../components";
@@ -79,19 +79,12 @@ const RequestModal = () => {
   };
 
   const handleSumbit = async () => {
-    console.log("Starting handleSumbit function");
-
     const error = validate();
     if (!error) {
-      console.log("Validation passed");
-
-      console.log("Database object:", database);
-
       const usersRef = ref(database, "users");
 
       try {
         const usersSnapshot = await get(usersRef);
-
         let userId = null;
 
         usersSnapshot.forEach((userSnapshot) => {
@@ -103,8 +96,6 @@ const RequestModal = () => {
         });
 
         if (userId) {
-          console.log("User found with recipientId:", userId);
-
           const notificationsRef = ref(database, "notifications");
           const newNotificationRef = push(notificationsRef);
 

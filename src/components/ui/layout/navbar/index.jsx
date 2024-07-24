@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IoMdCall,
   IoMdLogOut,
@@ -7,11 +7,16 @@ import {
 } from "react-icons/io";
 import { SlOptionsVertical } from "react-icons/sl";
 import { ProfileImage } from "../../../../constants/images";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAccessToken, setUser } from "../../../../slice/signup";
+import { setShowNotification } from "../../../../slice/dashboard";
 
 const Navbar = ({ user }) => {
+  const [notificationLength, setNotificationLength] = useState();
+  const allNotification = useSelector(
+    (state) => state?.dashboard.states.notificationData
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showOption, setShowOption] = useState(false);
@@ -24,7 +29,12 @@ const Navbar = ({ user }) => {
     dispatch(setUser([]));
     navigate("/prototype/signin");
   };
-
+  const handleNotification = () => {
+    dispatch(setShowNotification(true))
+  }
+  useEffect(() => {
+    setNotificationLength(allNotification.length);
+  }, []);
   return (
     <div className="flex w-full">
       <div className="relative md:ml-16 ml-5 flex w-3/4 items-center md:justify-center">
@@ -44,19 +54,24 @@ const Navbar = ({ user }) => {
             className="w-[50px] rounded-[50%]"
             alt="profile image"
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-y-1">
             <span className="text-sm font-normal text-[#181818] md:text-base">
               Welcome, {user.firstName}
             </span>
+            <span className="font-medium text-xs">ID: {user.uuid}</span>
           </div>
         </div>
       </div>
 
       <div className="ml-auto relative flex w-fit items-center gap-x-4 lg:gap-x-10 px-8">
-        <div className="relative z-20">
+        <div className="relative z-20" onClick={handleNotification}>
           <IoMdNotificationsOutline size={25} color="#181818" />
-          <div className="absolute bottom-[16px] text-sm left-[10px] flex h-[20px] w-[20px] items-center justify-center rounded-[50%] bg-secondary font-semibold text-primary">
-            5
+          <div
+            className={`absolute bottom-[16px] text-sm left-[10px] flex h-[20px] w-[20px] items-center justify-center rounded-[50%] ${
+              notificationLength !== 0 && "bg-secondary"
+            } font-semibold text-primary`}
+          >
+            {notificationLength}
           </div>
         </div>
         <IoMdCall size={25} color="#181818" />
@@ -82,12 +97,15 @@ const Navbar = ({ user }) => {
         {showOption && (
           <div className="absolute top-[120%] w-[150px] bg-[#eeeded] rounded-[5px]">
             <div className="flex flex-col items-center ">
-              <div className="flex flex-1 items-center font-medium w-full py-2 justify-center gap-x-2" onClick={handleLogout}>
+              <div
+                className="flex flex-1 items-center font-medium w-full py-2 justify-center gap-x-2"
+                onClick={handleLogout}
+              >
                 <IoMdLogOut size={15} />
                 <span>Log out</span>{" "}
               </div>
-              <hr color="#aeaeae" className="w-full"  />
-              <div className="flex flex-1 items-center font-medium w-full  py-2 justify-center gap-x-2" >
+              <hr color="#aeaeae" className="w-full" />
+              <div className="flex flex-1 items-center font-medium w-full  py-2 justify-center gap-x-2">
                 <IoMdLogOut size={15} />
                 <span>Settings</span>{" "}
               </div>

@@ -4,7 +4,7 @@ import { sideLinks } from "../../../../constants";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdLogOut } from "react-icons/io";
 import { setAccessToken, setUser } from "../../../../slice/signup";
-import { setShowOnepay } from "../../../../slice/dashboard";
+import { setShowNotification, setShowOnepay } from "../../../../slice/dashboard";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const Sidebar = () => {
   };
   const handleReset = () => {
     dispatch(setShowOnepay(false));
+    dispatch(setShowNotification(false));
   };
   return (
     <>

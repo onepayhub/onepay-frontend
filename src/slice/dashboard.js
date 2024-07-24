@@ -6,6 +6,7 @@ const initialState = {
     accountDetails: [],
     transferDetails: {},
     showRequestModal: false,
+    showNotification: false,
     notificationData: []
   },
 };
@@ -28,7 +29,9 @@ export const dashboardSlice = createSlice({
     },
     setNotificationData: (state, action) => {
       state.states.notificationData = action.payload;
-      console.log(state.states.notificationData)
+    },
+    setShowNotification: (state, action) => {
+      state.states.showNotification = action.payload;
     },
   },
 });
@@ -39,4 +42,5 @@ export const {
   setTransferDetails,
   setShowRequestModal,
   setNotificationData,
+  setShowNotification,
 } = dashboardSlice.actions;

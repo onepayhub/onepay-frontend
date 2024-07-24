@@ -9,7 +9,7 @@ const Notifications = () => {
   const allNotification = useSelector(
     (state) => state?.dashboard.states.notificationData
   );
-console.log(allNotification)
+  console.log(allNotification);
   useEffect(() => {
     setNotification(allNotification);
   }, []);
@@ -27,19 +27,27 @@ console.log(allNotification)
         />
         <span className="text-sm lg:text-base">Notifications</span>
       </div>
-      <div className="pt-20 flex flex-col items-center justify-center">
-        <div>
+      <div className="pt-20 flex flex-col">
+        <div className="flex items-center justify-center">
           <span>
             {notification.length === 0 && (
               <span>You have no notifications</span>
             )}
           </span>
         </div>
-<div>
-  <div>
-    <span></span>
-  </div>
-</div>
+        <div>
+          {allNotification.map((value, i) => (
+            <div key={i}>
+              <span>{value.notificationData.reason}</span>
+              <span>{value.notificationData.title}</span>
+              <span>{value.notificationData.amount}</span>
+              <div>
+              <span>{value.notificationData.userDetails?.firstName}</span>
+              <span>{value.notificationData.userDetails?.lastName}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,30 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 import { setShowRequestModal } from "../../../../../../slice/dashboard";
 import { Button } from "../../../../../../components";
 import { ref, push, set, get } from "firebase/database";
 import { database } from "../../../../../../firebase/config";
+import { toast } from "react-toastify";
+import { Spinner } from "../../../../../../constants/images";
 
 const RequestModal = () => {
+  const titleRef = useRef(null);
+  const recipientIdRef = useRef(null);
+  const amountRef = useRef(null);
+  const reasonRef = useRef(null);
   const user = useSelector((state) => state.auth.states.user);
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    uuid: ""
-  })
+    uuid: "",
+  });
   const [details, setDetails] = useState({
-    title: "Payment Request",
+    title: "",
     recipientId: "",
     amount: "",
     reason: "",
+    agreeTerms: false,
   });
+  console.log(userDetails.uuid === details.recipientId)
+
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
+    titleError: "",
     recipientIdError: "",
     amountError: "",
     reasonError: "",
+    agreeTermsError: "",
   });
   const dispatch = useDispatch();
 
@@ -42,14 +54,23 @@ const RequestModal = () => {
   const validate = () => {
     let isError = false;
     const errors = {
+      titleError: "",
       recipientIdError: "",
       amountError: "",
       reasonError: "",
+      agreeTermsError: "",
     };
-
+    if (!details.title) {
+      isError = true;
+      errors.titleError = "Please enter a title";
+    }
     if (!details.recipientId) {
       isError = true;
       errors.recipientIdError = "Please enter recipient's id";
+    }
+    if (details.recipientId === userDetails.uuid) {
+      isError = true;
+      errors.recipientIdError = "Please select a designated account, not yours";
     }
     if (!details.amount) {
       isError = true;
@@ -59,17 +80,28 @@ const RequestModal = () => {
       isError = true;
       errors.reasonError = "Please enter reason for request";
     }
+    if (!details.agreeTerms) {
+      isError = true;
+      errors.agreeTermsError = "Please read and check the box to submit";
+    }
 
     setError({ ...error, ...errors });
     return isError;
   };
 
   const handleForm = (e) => {
-    setDetails({ ...details, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
+    setDetails({ ...details, [name]: newValue });
   };
   const handleReset = () => {
+    titleRef.current.value = "";
+    recipientIdRef.current.value = "";
+    amountRef.current.value = "";
+    reasonRef.current.value = "";
     setDetails({
-      id: "",
+      title: "",
+      recipientId: "",
       amount: "",
       reason: "",
     });
@@ -81,6 +113,7 @@ const RequestModal = () => {
   const handleSumbit = async () => {
     const error = validate();
     if (!error) {
+      setLoading(true);
       const usersRef = ref(database, "users");
 
       try {
@@ -100,31 +133,36 @@ const RequestModal = () => {
           const newNotificationRef = push(notificationsRef);
 
           const notificationData = {
-            title: "Payment Request",
+            title: details.title,
             recipientId: details.recipientId,
             amount: details.amount,
             reason: details.reason,
             userId: userId,
             isRead: false,
-            userDetails
+            userDetails,
           };
 
           set(newNotificationRef, notificationData)
             .then(() => {
-              console.log("Notification sent successfully!");
+              setLoading(false);
+              toast.success("Notification sent successfully!");
+              handleReset()
             })
             .catch((error) => {
-              console.error("Error sending notification:", error);
+              setLoading(false);
+              toast.error("Error sending notification");
+              console.log(error);
             });
         } else {
-          console.log(
-            "User not found for the recipientId:",
+          setLoading(false);
+          toast.error(
+            "User not found for the recipient Id",
             details.recipientId
           );
-          // Handle this case, show an error message, etc.
         }
       } catch (error) {
-        console.error("Error searching for user with recipientId:", error);
+        toast.error("Error searching for user with recipientId:");
+        console.log(error);
       }
     }
   };
@@ -143,6 +181,24 @@ const RequestModal = () => {
         <div className="lg:pr-20 flex flex-col gap-y-6">
           <div className="flex flex-col gap-y-2">
             <label
+              htmlFor="title"
+              className="text-[#181818] text-xs lg:text-sm"
+            >
+              Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              ref={titleRef}
+              placeholder="Payment request"
+              onChange={handleForm}
+              className="px-4 py-2 border uppercase text-sm lg:text-base border-[#5F5F5F] rounded-[5px]"
+            />
+            <span className="text-xs text-[#e62e2e]">{error.titleError}</span>
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <label
               htmlFor="recipientId"
               className="text-[#181818] text-xs lg:text-sm"
             >
@@ -152,6 +208,7 @@ const RequestModal = () => {
               type="text"
               name="recipientId"
               id="recipientId"
+              ref={recipientIdRef}
               placeholder="7033936609"
               onChange={handleForm}
               className="px-4 py-2 border uppercase text-sm lg:text-base border-[#5F5F5F] rounded-[5px]"
@@ -168,9 +225,10 @@ const RequestModal = () => {
               Amount
             </label>
             <input
-              type="text"
+              type="number"
               name="amount"
               id="amount"
+              ref={amountRef}
               placeholder="Amount"
               onChange={handleForm}
               className="px-4 py-2 text-sm lg:text-base border border-[#5F5F5F] rounded-[5px]"
@@ -189,6 +247,7 @@ const RequestModal = () => {
               type="text"
               name="reason"
               id="reason"
+              ref={reasonRef}
               placeholder="Brief description on reason for request"
               onChange={handleForm}
               className="px-4 py-2 text-sm lg:text-base border border-[#5F5F5F] rounded-[5px]"
@@ -213,15 +272,26 @@ const RequestModal = () => {
               />
             </label>
           </div>
-          <div className="flex items-center gap-x-2">
-            <input type="checkbox" name="" id="" />
-            <span className="text-lightgray text-xs">
-              I confirm that the information provided is accurate and I agree to
-              the{" "}
-              <span className="text-lightblue underline underline-offset-[3px] cursor-pointer">
-                Terms and Conditions
-              </span>{" "}
-              of the payment request or debt owed.
+          <div className="flex flex-col gap-y-1">
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
+                name="agreeTerms"
+                id="agreeTerms"
+                checked={details.agreeTerms}
+                onChange={handleForm}
+              />
+              <span className="text-lightgray text-xs">
+                I confirm that the information provided is accurate and I agree
+                to the{" "}
+                <span className="text-lightblue underline underline-offset-[3px] cursor-pointer">
+                  Terms and Conditions
+                </span>{" "}
+                of the payment request or debt owed.
+              </span>
+            </div>
+            <span className="text-xs text-[#e62e2e]">
+              {error.agreeTermsError}
             </span>
           </div>
           <div className="flex items-center gap-x-4 pt-4">
@@ -233,8 +303,15 @@ const RequestModal = () => {
             >
               Reset
             </Button>
-            <Button className="w-full" onClick={handleSumbit}>
-              Submit
+            <Button
+              className="w-full flex justify-center"
+              onClick={handleSumbit}
+            >
+              {loading ? (
+                <img src={Spinner} alt="loading" className="w-[25px]" />
+              ) : (
+                <span>Submit</span>
+              )}
             </Button>
           </div>
         </div>

@@ -10,40 +10,44 @@ import { toast } from "react-toastify";
 import { setNotificationData } from "../../slice/dashboard";
 
 const Dashboard = () => {
-  const dispatch = useDispatch()
-  const [userId, setUserId] = useState()
+  const dispatch = useDispatch();
+  const [userId, setUserId] = useState();
   const showOnepay = useSelector((state) => state?.dashboard.states.showOnepay);
-  const allNotification = useSelector((state) => state?.dashboard.states.notificationData);
-  const showNotification = useSelector((state) => state?.dashboard.states.showNotification);
+  const allNotification = useSelector(
+    (state) => state?.dashboard.states.notificationData
+  );
+  console.log(allNotification);
+  const showNotification = useSelector(
+    (state) => state?.dashboard.states.showNotification
+  );
   const showRequestModal = useSelector(
     (state) => state?.dashboard.states.showRequestModal
   );
   const user = useSelector((state) => state.auth.states.user);
 
   useEffect(() => {
-    setUserId(user.id)
-  }, [])
+    setUserId(user.id);
+  }, []);
 
   useEffect(() => {
     const notificationsRef = ref(database, "notifications");
 
-    const listenForNotifications = (userId) => {
+    const listenForNotifications = () => {
       onChildAdded(notificationsRef, (snapshot) => {
         const notificationData = snapshot.val();
-        
         if (notificationData.userId === userId) {
-          toast.success("You have 1 new notification")
-          dispatch(setNotificationData([...allNotification, notificationData]))
-          console.log("Notification data:", notificationData);
+          toast.success("You have 1 new notification");
+            dispatch(setNotificationData({...allNotification, notificationData}));
         }
       });
     };
 
-    listenForNotifications(userId);
+    const unsubscribe = listenForNotifications(); 
 
     return () => {
-      // Clean up the listener when the component unmounts
-      // For example, you can unsubscribe from the listener here
+      if (unsubscribe) {
+        unsubscribe();
+      }
     };
   }, [userId]);
 
@@ -55,7 +59,12 @@ const Dashboard = () => {
       {showOnepay && <OnepayTransfer />}
       {showNotification && <Notifications />}
       {!(showOnepay || showNotification) && <Home />}
-      {showRequestModal && <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[20%] bottom-0 overflow-auto right-0 left-0 lg:left-[35%]"> <RequestModal /></div>}
+      {showRequestModal && (
+        <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[10%] bottom-0 overflow-auto right-0 left-0 lg:left-[35%]">
+          {" "}
+          <RequestModal />
+        </div>
+      )}
     </Layout>
   );
 };

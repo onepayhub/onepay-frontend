@@ -28,7 +28,7 @@ export const dashboardSlice = createSlice({
       state.states.showRequestModal = action.payload;
     },
     setNotificationData: (state, action) => {
-      state.states.notificationData = action.payload;
+      state.states.notificationData = [...state.states.notificationData, action.payload];
     },
     setShowNotification: (state, action) => {
       state.states.showNotification = action.payload;

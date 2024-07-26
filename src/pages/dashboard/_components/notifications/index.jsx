@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { setShowNotification } from "../../../../slice/dashboard";
+import {
+  setApprovePayment,
+  setSelectedNotificationId,
+  setShowNotification,
+} from "../../../../slice/dashboard";
 import { Button } from "../../../../components";
 
 const Notifications = () => {
@@ -13,7 +17,10 @@ const Notifications = () => {
   useEffect(() => {
     setNotification(allNotification);
   }, []);
-
+  const handleApproveClick = (value) => {
+    dispatch(setApprovePayment(true));
+    dispatch(setSelectedNotificationId(value));
+  };
   const handleReset = () => {
     dispatch(setShowNotification(false));
   };
@@ -60,6 +67,7 @@ const Notifications = () => {
                     className="w-fit !text-sm lg:block hidden"
                     backgroundColor="transparent"
                     textColor="#3745c0"
+                    onClick={() => handleApproveClick(value.notificationData.Id)}
                   >
                     Approve payment
                   </Button>
@@ -79,6 +87,7 @@ const Notifications = () => {
                     className="w-full mt-4 !text-xs lg:hidden block"
                     backgroundColor="transparent"
                     textColor="#3745c0"
+                    onClick={() => handleApproveClick(value.notificationData.id)}
                   >
                     Approve payment
                   </Button>

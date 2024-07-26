@@ -6,8 +6,10 @@ const initialState = {
     accountDetails: [],
     transferDetails: {},
     showRequestModal: false,
+    approvePayment: false,
     showNotification: false,
-    notificationData: []
+    notificationData: [],
+    selectedNotificationId: '',
   },
 };
 
@@ -33,6 +35,13 @@ export const dashboardSlice = createSlice({
     setShowNotification: (state, action) => {
       state.states.showNotification = action.payload;
     },
+    setApprovePayment: (state, action) => {
+      state.states.approvePayment = action.payload;
+    },
+    setSelectedNotificationId: (state, action) => {
+      state.states.selectedNotificationId = action.payload;
+      // console.log(state.states.selectedNotificationId )
+    },
   },
 });
 
@@ -43,4 +52,6 @@ export const {
   setShowRequestModal,
   setNotificationData,
   setShowNotification,
+  setApprovePayment,
+  setSelectedNotificationId,
 } = dashboardSlice.actions;

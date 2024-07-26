@@ -7,6 +7,8 @@ import { ref, push, set, get } from "firebase/database";
 import { database } from "../../../../../../firebase/config";
 import { toast } from "react-toastify";
 import { Spinner } from "../../../../../../constants/images";
+import { generateRandomUID } from "../../../../../../hooks/useGenerateId";
+
 
 const RequestModal = () => {
   const titleRef = useRef(null);
@@ -102,7 +104,6 @@ const RequestModal = () => {
     setError({ ...error, ...errors });
     return isError;
   };
-
   const handleForm = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
@@ -148,6 +149,7 @@ const RequestModal = () => {
           const newNotificationRef = push(notificationsRef);
 
           const notificationData = {
+            id: generateRandomUID(5),
             title: details.title,
             bank: details.bank,
             recipientId: details.recipientId,

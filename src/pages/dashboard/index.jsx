@@ -3,6 +3,7 @@ import { Layout } from "../../components";
 import { Home, Notifications } from "./_components/";
 import { useDispatch, useSelector } from "react-redux";
 import RequestModal from "./_components/home/_components/request-modal";
+import ApprovePayment from "./_components/home/_components/approve-modal";
 import OnepayTransfer from "./_components/home/_components/transfer-dashboard/_components/onepay-transfer";
 import { onChildAdded, ref } from "firebase/database";
 import { database } from "../../firebase/config";
@@ -13,6 +14,9 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [userId, setUserId] = useState();
   const showOnepay = useSelector((state) => state?.dashboard.states.showOnepay);
+  const approvePayment = useSelector(
+    (state) => state?.dashboard.states.approvePayment
+  );
   const allNotification = useSelector(
     (state) => state?.dashboard.states.notificationData
   );
@@ -36,12 +40,14 @@ const Dashboard = () => {
         const notificationData = snapshot.val();
         if (notificationData.userId === userId) {
           toast.success("You have 1 new notification");
-            dispatch(setNotificationData({...allNotification, notificationData}));
+          dispatch(
+            setNotificationData({ ...allNotification, notificationData })
+          );
         }
       });
     };
 
-    const unsubscribe = listenForNotifications(); 
+    const unsubscribe = listenForNotifications();
 
     return () => {
       if (unsubscribe) {
@@ -52,7 +58,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      {showRequestModal && (
+      {(showRequestModal || approvePayment) && (
         <div className="fixed bg-black bg-opacity-30 z-20 w-screen top-0 left-0 h-screen" />
       )}
       {showOnepay && <OnepayTransfer />}
@@ -60,8 +66,12 @@ const Dashboard = () => {
       {!(showOnepay || showNotification) && <Home />}
       {showRequestModal && (
         <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[2%] overflow-auto bottom-0  right-0 left-0 lg:left-[35%]">
-          {" "}
           <RequestModal />
+        </div>
+      )}
+      {approvePayment && (
+        <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[10%] overflow-auto bottom-0  right-0 left-0 lg:left-[35%]">
+          <ApprovePayment />
         </div>
       )}
     </Layout>

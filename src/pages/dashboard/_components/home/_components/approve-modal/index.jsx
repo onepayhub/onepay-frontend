@@ -94,7 +94,7 @@ const ApprovePayment = () => {
                       {notification.amount}
                     </div>
                     <div className="flex justify-between px-4 lg:px-2">
-                      <span className="text-sm text-lightgray">Bank</span>
+                      <span className="text-sm text-lightgray">Preferred Bank</span>
                       <span className="text-xs lg:text-sm text-[#181818]">
                         {notification.bank}
                       </span>
@@ -213,7 +213,7 @@ const ApprovePayment = () => {
                         <input
                           type="number"
                           className="py-2 px-4 border border-[#5f5f5f] text-sm lg:text-base rounded-[5px] w-5/6"
-                          value={value.recipientId}
+                          value={value.userDetails.uuid}
                           name="id"
                           contentEditable={false}
                         />

@@ -102,7 +102,7 @@ const ApprovePayment = () => {
                       <span className="text-sm text-lightgray">Reason</span>
                       <div className="flex gap-x-2 items-center">
                         <span className="text-xs lg:text-sm text-[#181818]">
-                          {notification.reason}
+                        {notification.reason.length > 10 ? `${notification.reason.slice(0, 30)}...` : notification.reason}
                         </span>
                       </div>
                     </div>

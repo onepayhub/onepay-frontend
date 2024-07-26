@@ -10,7 +10,8 @@ const initialState = {
     showNotification: false,
     notificationData: [],
     selectedNotificationId: '',
-    setShowPayment: false
+    showPayment: false,
+    paymentSuccess: false,
   },
 };
 
@@ -45,6 +46,9 @@ export const dashboardSlice = createSlice({
     setShowPayment: (state, action) => {
       state.states.showPayment = action.payload;
     },
+    setPaymentSuccess: (state, action) => {
+      state.states.paymentSuccess = action.payload;
+    },
   },
 });
 
@@ -58,4 +62,5 @@ export const {
   setApprovePayment,
   setSelectedNotificationId,
   setShowPayment,
+  setPaymentSuccess,
 } = dashboardSlice.actions;

@@ -3,7 +3,7 @@ import { AccountDashboard, NoticeDashboard, ServicesDashboard, TransferDashboard
 
 const Home = () => {
   return (
-    <div className="h-[140vh] lg:h-screen">
+    <div className="h-[170vh] lg:h-screen">
       <AccountDashboard />
       <TransferDashboard />
       <ServicesDashboard />

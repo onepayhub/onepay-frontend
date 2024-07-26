@@ -96,7 +96,7 @@ const Signup = () => {
           const user = userCredential.user;
           const userId = user.uid;
           const UUID = phone.substring(1);
-          dispatch(setAccessToken(user.accessToken))
+          dispatch(setAccessToken(user.accessToken));
           // save user details and access token for protected routes
           dispatch(setSignupDetails({ firstName, lastName, email }));
           // Store the additional details in the database under the user's ID
@@ -167,8 +167,13 @@ const Signup = () => {
       >
         <span>OnePay</span>
         <span className="text-sm">Create one account for all</span>
-      </Link>
-      <div className="lg:w-1/2 w-full px-6 pt-24 lg:pt-[15rem] lg:pl-20 flex justify-center items-start">
+      </Link>{" "}
+      <div className="text-lightgray text-xs lg:text-sm my-4 font-medium w-full lg:top-[7%] top-[4%] absolute lg:pl-20 pl-6 pt-10">
+        To test full functionalities, we recommend testing with a friend. <br />{" "}
+        So, signup and signup with a second device as well or <br /> encourage a friend to sign
+        up to test. <br /> Thanks!
+      </div>
+      <div className="lg:w-1/2 w-full px-6 pb-6 py-[11rem] lg:pt-[15rem] lg:pl-20 flex justify-center items-start">
         <div className="w-full flex flex-col gap-y-4">
           <div className="flex-col flex gap-y-1">
             <label htmlFor="firstName" className={labelStyle}>

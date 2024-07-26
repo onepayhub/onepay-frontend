@@ -20,7 +20,7 @@ const ServicesDashboard = () => {
           </div>
           <div className="flex w-full flex-col items-center gap-y-1 hover:cursor-pointer hover:scale-105 transition-all ease-in">
             <TbMobiledata size={30} color="#3745c0" />
-            <span className="text-xs text-nowrap lg:text-base">Data Bundle</span>
+            <span className="text-xs text-wrap lg:text-base">Data</span>
           </div>
           <div className="flex flex-col items-center gap-y-1 hover:cursor-pointer hover:scale-105 transition-all ease-in">
             <MdElectricBolt size={30} color="#3745c0" />

@@ -58,7 +58,7 @@ const Notifications = () => {
                   </span>
 
                   <span className="lg:w-3/4 text-xs capitalize lg:text-base font-normal text-[#181818]">
-                    {value.notificationData.reason}
+                    {value.notificationData.reason.length > 20 ? `${value.notificationData.reason.slice(0, 10)}...` : notification.reason}
                   </span>
                   <span className="lg:text-base text-xs ">
                     Amount: ₦{value.notificationData.amount}

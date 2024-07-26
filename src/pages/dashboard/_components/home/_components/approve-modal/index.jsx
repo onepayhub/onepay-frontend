@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setApprovePayment } from "../../../../../../slice/dashboard";
+import { setApprovePayment, setShowPayment } from "../../../../../../slice/dashboard";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { IoCheckmark, IoWalletSharp } from "react-icons/io5";
 import { Button } from "../../../../../../components";
+import PaymentModal from "../payment-modal";
 import {
   AccessLogo,
   FbLogo,
@@ -20,11 +21,15 @@ const ApprovePayment = () => {
   const notificationId = useSelector(
     (state) => state?.dashboard.states.selectedNotificationId
   );
+  const showPayment = useSelector(
+    (state) => state?.dashboard.states.showPayment
+  );
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [index, setIndex] = useState(1);
   const [showBanks, setShowBanks] = useState(false);
   const [bankName, setBankName] = useState("Select Bank");
   const [error, setError] = useState("");
+  const [bankError, setBankError] = useState("");
 
   useEffect(() => {
     if (allNotifications && allNotifications.length > 0) {
@@ -60,9 +65,20 @@ const ApprovePayment = () => {
   const handleSetBankName = (value) => {
     setBankName(value);
   };
-  console.log(filteredNotifications);
+
+  const handlePayment = () => {
+    if (bankName === 'Select Bank') {
+      setBankError('Select the preferred bank')
+    }
+    else {
+      dispatch(setShowPayment(true));
+      
+    }
+  };
+
   return (
-    <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px] overflow-auto lg:h-fit h-[30vh]">
+    <div>
+   {!showPayment && <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px] overflow-auto lg:h-fit h-[30vh]">
       <div className="flex relative pt-14 pb-10 px-4 flex-col gap-y-6">
         <span className="lg:text-xl text-secondary font-medium">
           Approve payment
@@ -94,7 +110,9 @@ const ApprovePayment = () => {
                       {notification.amount}
                     </div>
                     <div className="flex justify-between px-4 lg:px-2">
-                      <span className="text-sm text-lightgray">Preferred Bank</span>
+                      <span className="text-sm text-lightgray">
+                        Preferred Bank
+                      </span>
                       <span className="text-xs lg:text-sm text-[#181818]">
                         {notification.bank}
                       </span>
@@ -234,6 +252,7 @@ const ApprovePayment = () => {
                         <span className="text-xs lg:text-sm text-lightgray">
                           Select the preferred bank
                         </span>
+                      
                         <div
                           className="w-5/6 flex items-center py-2 px-4 border rounded-[5px] cursor-pointer border-lightgray"
                           onClick={handleBankClick}
@@ -248,10 +267,13 @@ const ApprovePayment = () => {
                             }`}
                           />
                         </div>
+                        {bankError && (
+                        <span className="text-xs text-[#e62e2e]">{bankError}</span>
+                      )}
                       </div>
                       {showBanks && (
-                        <div className="absolute h-[50vh] overflow-auto w-full top-[8.5rem] animate-slide_up lg:w-5/6">
-                          <div className="bg-[#f5f5f5] w-5/6 text-sm lg:text-base flex flex-col px-2 py-3 rounded-[5px]">
+                        <div className="absolute h-[50vh] overflow-auto w-full top-[8.5rem] lg:top-[16.5rem] animate-slide_up lg:w-5/6">
+                          <div className="bg-[#f5f5f5] w-5/6 lg:w-full text-sm lg:text-base flex flex-col px-2 py-3 rounded-[5px]">
                             <div
                               className="flex items-center gap-x-4 py-2 lg:py-3 cursor-pointer"
                               onClick={() => handleSetBankName("Access Bank")}
@@ -313,7 +335,7 @@ const ApprovePayment = () => {
                     <Button onClick={handlePrevious} className="w-[150px]">
                       Prev
                     </Button>
-                    <Button onClick={handlePrevious} className="w-[150px]">
+                    <Button onClick={handlePayment} className="w-[150px]">
                       Approve
                     </Button>
                   </div>
@@ -321,8 +343,11 @@ const ApprovePayment = () => {
               )}
             </div>
           </div>
+         
         </div>
       </div>
+    </div>}
+    {showPayment && <PaymentModal />}
     </div>
   );
 };

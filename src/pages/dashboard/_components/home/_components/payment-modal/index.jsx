@@ -1,12 +1,14 @@
 import React from "react";
 import { SiAdguard } from "react-icons/si";
-import { useDispatch } from "react-redux";
-import { setShowPayment } from "../../../../../../slice/dashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { setPaymentSuccess, setShowPayment } from "../../../../../../slice/dashboard";
 import PinInput from "react-pin-input";
 
 const PaymentModal = () => {
   const dispatch = useDispatch();
-
+  const paymentSuccess = useSelector(
+    (state) => state?.dashboard.states.paymentSuccess
+  );
   const handleClose = () => {
     dispatch(setShowPayment(false));
   };
@@ -16,6 +18,12 @@ const PaymentModal = () => {
       e.preventDefault();
     }
   };
+useEffect(() => {
+  dispatch(setShowPayment(false));
+}, [paymentSuccess])
+const handleSent = () => {
+  dispatch(setPaymentSuccess(true))
+}
   return (
     <div className="bg-primary relative lg:w-[60%] flex flex-col rounded-[5px] overflow-auto lg:h-fit h-[40%]">
       <span
@@ -39,7 +47,7 @@ const PaymentModal = () => {
           style={{ padding: "10px" }}
           inputStyle={{ borderColor: "323b6d" }}
           inputFocusStyle={{ borderColor: "3745c0" }}
-          onComplete={(value, index) => {}}
+          onComplete={handleSent}
           autoSelect={true}
           regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
           onKeyDown={handleKeyDown}

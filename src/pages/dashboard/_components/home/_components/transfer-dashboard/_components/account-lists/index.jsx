@@ -9,24 +9,33 @@ import {
   OpayLogo,
 } from "../../../../../../../../constants/images";
 import { Button } from "../../../../../../../../components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoWalletSharp, IoCheckmark } from "react-icons/io5";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { setShowPayment } from "../../../../../../../../slice/dashboard";
+import PaymentModal from "../../../payment-modal";
 
 const AccountLists = () => {
+  const dispatch = useDispatch();
   const [details, setAccountDetails] = useState({});
   const [selected, setSelected] = useState({});
   const [amountDetails, setAmountDetails] = useState({});
-  const [showPayment, setShowPayment] = useState(false);
+  const [payment, setPayment] = useState(false);
   const accountDetails = useSelector(
     (state) => state?.dashboard.states.accountDetails
+  );
+  const showPayment = useSelector(
+    (state) => state?.dashboard.states.showPayment
   );
   const transferDetails = useSelector(
     (state) => state?.dashboard.states.transferDetails
   );
 
+  const handleShowPayment = () => {
+    dispatch(setShowPayment(true));
+  };
   const handleSelected = (bank, number) => {
-    setShowPayment(true);
+    setPayment(true);
     setSelected({
       bankName: bank,
       account: number,
@@ -173,12 +182,12 @@ const AccountLists = () => {
           </div>
         </div>
       </div>
-      {showPayment && (
+      {payment && !showPayment && (
         <div className="relative lg:w-1/2">
           {" "}
           <div
             className="fixed lg:absolute lg:right-10 right-5 cursor-pointer z-50 lg:bottom-0 lg:top-0 bottom-[33rem] top0 lg:text-xl"
-            onClick={() => setShowPayment(false)}
+            onClick={() => setPayment(false)}
           >
             X
           </div>{" "}
@@ -244,11 +253,18 @@ const AccountLists = () => {
                   <IoCheckmark color="323b6d" />
                 </div>
                 <div className="w-full pt-8 flex justify-center">
-                  <Button className="w-5/6 mx-auto">Pay</Button>
+                  <Button className="w-5/6 mx-auto" onClick={handleShowPayment}>
+                    Pay
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      )}
+      {showPayment && (
+        <div className="fixed  lg:static w-full right-0 left-0 bottom-0 lg:z-0 z-50">
+          <PaymentModal />
         </div>
       )}
     </div>

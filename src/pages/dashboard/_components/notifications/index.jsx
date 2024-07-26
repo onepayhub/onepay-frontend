@@ -67,7 +67,7 @@ const Notifications = () => {
                     className="w-fit !text-sm lg:block hidden"
                     backgroundColor="transparent"
                     textColor="#3745c0"
-                    onClick={() => handleApproveClick(value.notificationData.Id)}
+                    onClick={() => handleApproveClick(value.notificationData.id)}
                   >
                     Approve payment
                   </Button>

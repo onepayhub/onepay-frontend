@@ -6,31 +6,22 @@ import { IoCheckmark, IoWalletSharp } from "react-icons/io5";
 import { Button } from "../../../../../../components";
 
 const ApprovePayment = () => {
-  const [notification, setNotification] = useState([])
+  const [filteredNotifications, setFilteredNotifications] = useState([]);
   const dispatch = useDispatch();
-  const allNotifications = useSelector(
-    (state) => state?.dashboard.states.notificationData
-  );
-  const notificationId = useSelector(
-    (state) => state?.dashboard.states.selectedNotificationId
-  );
-  console.log(notificationId)
-  const notificationArray = Object.values(allNotifications[0]);
-
-
+  const allNotifications = useSelector((state) => state?.dashboard.states.notificationData);
+  const notificationId = useSelector((state) => state?.dashboard.states.selectedNotificationId);
 
   useEffect(() => {
-    const filteredNotifications = notificationArray.filter(
-      (notification, i) => i === notificationId
-    );
-    setNotification(filteredNotifications)
-  }, [])
+    if (allNotifications && allNotifications.length > 0) {
+      const filtered = allNotifications.map(notification => notification.notificationData).filter(notification => notification.id === notificationId);
+      setFilteredNotifications(filtered);
+    }
+  }, [allNotifications, notificationId]);
 
   const handleCloseModal = () => {
     dispatch(setApprovePayment(false));
   };
 
-  console.log(notification);
   return (
     <div className="bg-primary lg:w-[60%] lg:px-4 px-2 flex flex-col rounded-[5px] overflow-auto lg:h-fit h-[30vh]">
       <div className="flex relative pt-14 pb-10 px-4 flex-col gap-y-6">
@@ -42,11 +33,11 @@ const ApprovePayment = () => {
           onClick={handleCloseModal}
         >
           x
-        </span>
+        </span> 
         <div className="flex flex-col gap-y-6">
             <div className="lg:w-full lg:mx-auto bg-primary lg:bg- lg:rounded-none left-0 right-0 rounded-[20px] lg:static w-full fixed bottom-[.9rem] py-10 flex justify-start items-start">
               <div className="flex gap-y-2 flex-col w-full">
-                {notification.map((notification) => (
+                {filteredNotifications.map((notification) => (
                   <div className="flex gap-y-3 flex-col relative" key={notification.id}>
                     <span
                       className="text-xl cursor-pointer block lg:hidden right-6 lg:right-10 top-[-5%] lg:top-6 z-20 absolute"

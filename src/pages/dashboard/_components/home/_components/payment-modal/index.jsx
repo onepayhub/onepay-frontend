@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { SiAdguard } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import { setPaymentSuccess, setShowPayment } from "../../../../../../slice/dashboard";
 import PinInput from "react-pin-input";
 
 const PaymentModal = () => {
+  const [success, setSuccess] = useState(false)
   const dispatch = useDispatch();
   const paymentSuccess = useSelector(
     (state) => state?.dashboard.states.paymentSuccess
@@ -20,6 +21,9 @@ const PaymentModal = () => {
   };
 useEffect(() => {
   dispatch(setShowPayment(false));
+  if (paymentSuccess) {
+    setSuccess(true)
+  }
 }, [paymentSuccess])
 const handleSent = () => {
   dispatch(setPaymentSuccess(true))
@@ -32,7 +36,7 @@ const handleSent = () => {
       >
         x
       </span>
-      <div className="flex justify-center items-center w-full pt-14 pb-10 flex-col gap-y-6">
+{!success &&      <div className="flex justify-center items-center w-full pt-14 pb-10 flex-col gap-y-6">
         <span className="lg:text-xl text-secondary px-4 font-medium">
           Enter Payment Pin
         </span>
@@ -56,7 +60,8 @@ const handleSent = () => {
           <SiAdguard color="323b6d" />
           <span>Onepay Secure Numeric Key</span>{" "}
         </div>
-      </div>
+      </div>}
+      {success && <div>welldone</div>}
     </div>
   );
 };

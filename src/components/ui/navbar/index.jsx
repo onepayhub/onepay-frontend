@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-[#f3f3f3] top-0 z-50 flex h-12 w-full items-center justify-between bg-primary px-6 transition-all duration-300 ease-out md:top-0 md:h-14 md:gap-3 md:px-12 lg:h-20 lg:px-40 xl:gap-0">
-        <Link to="/" className="font-semibold text-lg lg:text-3xl text-[#3745c0]"><img src="/logo.png" className="w-[170px]" alt="" /></Link>
+        <Link to="/" className="font-semibold text-lg lg:text-3xl text-[#3745c0]"><img src="/logo.png" className="w-[170px] lg:m-0 ml-[-2rem]" alt="" /></Link>
         <div className="hidden items-center justify-center font-medium text-[#474646] md:flex md:space-x-10 md:text-xs lg:space-x-20 lg:text-base">
           <NavLink to="#">Personal</NavLink>
           <NavLink to="#">Business</NavLink>

@@ -14,7 +14,7 @@ const SecondSection = () => {
             className="absolute w-[250px] lg:block hidden right-0"
             alt=""
           />
-          <img src="/logo.png" alt="save" className="w-[200px] m-[-2rem]" />
+          <img src="/logo.png" alt="save" className="w-[200px] mb-[-4rem]" />
           <span className="lg:text-2xl lg:text-start text-center text-[#49529b]">
             A platform for all your <br /> financial needs
           </span>
@@ -36,7 +36,7 @@ const SecondSection = () => {
           </div>
         </div>
         <div className="flex bg-[#eee] items-center justify-center rounded-[20px] py-10 w-full lg:px-16 gap-y-3 mt-10 lg:w-[40%] flex-col">
-          <img src="/logo.png" alt="save" className="w-[200px] m-[-2rem]" />
+          <img src="/logo.png" alt="save" className="w-[200px] mb-[-4rem]" />
           <span className="lg:text-2xl text-[#49529b]">
             Get notified of launch
           </span>

@@ -245,7 +245,7 @@ const RequestModal = () => {
               name="bank"
               id="bank"
               ref={bankRef}
-              placeholder="Amount"
+              placeholder="Bank name"
               onChange={handleForm}
               className="px-4 py-2 text-sm lg:text-base border border-[#5F5F5F] rounded-[5px]"
             />

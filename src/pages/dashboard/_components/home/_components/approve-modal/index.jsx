@@ -71,14 +71,11 @@ const ApprovePayment = () => {
   };
 
   const handlePayment = () => {
-    console.log("clicked 1");
     if (bankName === "Select Bank") {
       setBankError("Select the preferred bank");
-      console.log("clicked 2");
     } else {
       dispatch(setShowPayment(true));
       setBankError("");
-      console.log("clicked 3");
     }
   };
 
@@ -269,7 +266,11 @@ const ApprovePayment = () => {
                             <input
                               type="number"
                               className="py-2 px-4 border border-[#5f5f5f] text-sm lg:text-base rounded-[5px] w-5/6"
-                              defaultValue={`${value.amount}`}
+                              defaultValue={
+                                value.title === "request to share cost"
+                                  ? value.amountToPay
+                                  : value.amount
+                              }
                               name="id"
                               contentEditable={false}
                             />

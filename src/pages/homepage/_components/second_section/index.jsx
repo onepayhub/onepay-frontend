@@ -23,7 +23,7 @@ const SecondSection = () => {
             Download
           </Button>
           <div className="flex items-center text-sm lg:text-base font-medium text-[#181818] gap-x-2 pt-2 cursor-pointer group">
-            <Link to="#">Learn more</Link>
+            <Link to="/prototype/signup">Learn more</Link>
             <GoArrowRight
               size={27}
               className="group-hover:translate-x-2 transition-all ease-in"

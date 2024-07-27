@@ -10,7 +10,10 @@ import { ProfileImage } from "../../../../constants/images";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAccessToken, setUser } from "../../../../slice/signup";
-import { setShowNotification, setShowOnepay } from "../../../../slice/dashboard";
+import {
+  setShowNotification,
+  setShowOnepay,
+} from "../../../../slice/dashboard";
 
 const Navbar = ({ user }) => {
   const [notificationLength, setNotificationLength] = useState();
@@ -30,9 +33,9 @@ const Navbar = ({ user }) => {
     navigate("/prototype/signin");
   };
   const handleNotification = () => {
-    dispatch(setShowNotification(true))
-    dispatch(setShowOnepay(false))
-  }
+    dispatch(setShowNotification(true));
+    dispatch(setShowOnepay(false));
+  };
   useEffect(() => {
     setNotificationLength(allNotification.length);
   }, [allNotification]);
@@ -56,16 +59,25 @@ const Navbar = ({ user }) => {
             alt="profile image"
           />
           <div className="flex flex-col gap-y-1">
-            <span className="text-sm font-normal text-[#181818] md:text-base">
-              Welcome, {user.firstName}
-            </span>
-            <span className="font-medium text-xs">ID: {user.uuid}</span>
+            <div className="flex gap-x-1 text-sm">
+              <span className="text-sm font-normal text-[#181818] md:text-base">
+                Welcome,
+              </span>
+              <span>{user.firstName}</span>
+            </div>
+            <div className="flex text-xs gap-x-1">
+              <span className="font-medium text-xs">ID: </span>
+              <span>{user.uuid}</span>{" "}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="ml-auto relative flex w-fit items-center gap-x-4 lg:gap-x-10 px-8">
-        <div className="relative z-20 cursor-pointer" onClick={handleNotification}>
+        <div
+          className="relative z-20 cursor-pointer"
+          onClick={handleNotification}
+        >
           <IoMdNotificationsOutline size={25} color="#181818" />
           <div
             className={`absolute bottom-[16px] text-sm left-[10px] flex h-[20px] w-[20px] items-center justify-center rounded-[50%] ${
@@ -88,11 +100,17 @@ const Navbar = ({ user }) => {
             className="w-[50px] rounded-[50%]"
             alt="profile image"
           />
-          <div className="flex flex-col">
-            <span className="text-sm font-normal text-[#181818] md:text-base">
-              Welcome, <br /> {user.firstName} <br />
-              <span className="font-medium">ID: {user.uuid}</span>
-            </span>
+           <div className="flex flex-col gap-y-1">
+            <div className="flex gap-x-1 items-center text-sm">
+              <span className="text-sm font-normal text-[#181818] md:text-base">
+                Welcome,
+              </span>
+              <span>{user.firstName}</span>
+            </div>
+            <div className="flex font-medium  text-xs gap-x-1">
+              <span className="font-medium text-xs">ID: </span>
+              <span>{user.uuid}</span>{" "}
+            </div>
           </div>
         </div>
         {showOption && (

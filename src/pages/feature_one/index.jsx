@@ -9,7 +9,7 @@ const FeatureOne = () => {
           to="/"
           className="font-semibold flex flex-col text-[#49529b] lg:text-3xl"
         >
-          <span>OnePay</span>
+          <img src="/logo.png" className="w-[170px] m-[-2rem] mb-[-4rem]" alt="" />
           <span className="text-sm">Share costs</span>
         </Link>
         <div className=" lg:text-base text-sm flex pt-10 lg:pt-16  flex-col gap-y-5">

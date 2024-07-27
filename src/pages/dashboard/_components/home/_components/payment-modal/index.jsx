@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SiAdguard } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setApprovePayment,
   setPaymentSuccess,
   setShowPayment,
 } from "../../../../../../slice/dashboard";
@@ -22,7 +23,10 @@ const PaymentModal = () => {
       e.preventDefault();
     }
   };
-
+  const handleReceiptClick = () => {
+    dispatch(setShowPayment(false));
+    dispatch(setApprovePayment(false));
+  };
   const handleSent = () => {
     dispatch(setPaymentSuccess(true));
   };
@@ -72,7 +76,10 @@ const PaymentModal = () => {
           <span className="lg:text-xl text-secondary px-4 font-medium">
             Payment Sent Succesfully
           </span>
-          <span className="text-sm text-lightgray underline decoration-lightblue underline-offset-4 cursor-pointer">
+          <span
+            className="text-sm text-lightgray underline decoration-lightblue underline-offset-4 cursor-pointer"
+            onClick={handleReceiptClick}
+          >
             Click to view receipt
           </span>
         </div>

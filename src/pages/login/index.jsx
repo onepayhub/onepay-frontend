@@ -117,7 +117,7 @@ const Login = () => {
         <span className="text-sm">Welcome back</span>
       </Link>
       <div className="w-full flex justify-between items-start">
-        <div className="lg:w-[40%] w-full flex pt-24 lg:pt-[25rem] px-6 lg:pl-20 flex-col gap-y-4">
+        <div className="lg:w-[40%] w-full flex pt-24 lg:pt-[20rem] py-4 px-6 lg:pl-20 flex-col gap-y-4">
           <div className="flex-col flex gap-y-1">
             <label htmlFor="firstName" className={labelStyle}>
               Email
@@ -167,7 +167,7 @@ const Login = () => {
           </div>
         </div>
         <div className="w-[50vw] h-screen lg:block hidden">
-          <img src={SignupBg} alt="" className="h-full w-full" />
+          <img src={SignupBg} alt="" className="h-screen w-[50vw] right-0 fixed" />
         </div>
       </div>
     </div>

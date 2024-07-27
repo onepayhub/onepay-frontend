@@ -281,7 +281,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="w-[50vw] h-screen lg:block hidden">
-          <img src={SignupBg} alt="" className="h-full w-full" />
+          <img src={SignupBg} alt="" className="h-screen w-[50vw] right-0 fixed" />
         </div>
       </div>
     </div>

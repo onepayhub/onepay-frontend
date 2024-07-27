@@ -1,5 +1,15 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Dashboard, HomePage, Login, Signup, Verified, Verify } from "./pages/";
+import {
+  Dashboard,
+  FeatureOne,
+  FeatureThree,
+  FeatureTwo,
+  HomePage,
+  Login,
+  Signup,
+  Verified,
+  Verify,
+} from "./pages/";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/protectedRoute";
 import { useEffect } from "react";
@@ -31,6 +41,12 @@ function App() {
             <Route path="signup/verified" element={<Verified />} />
             <Route path="dashboard" element={<Dashboard />} />
           </Route>
+        </Route>
+
+        <Route path="onepay">
+          <Route path="share&expenses" element={<FeatureOne />} />
+          <Route path="one&id" element={<FeatureTwo />} />
+          <Route path="request&payment" element={<FeatureThree />} />
         </Route>
       </Routes>
       <ToastContainer position="bottom-right" />

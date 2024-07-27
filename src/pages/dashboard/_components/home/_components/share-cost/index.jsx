@@ -7,16 +7,14 @@ import {
 } from "../../../../../../slice/dashboard";
 import { Button } from "../../../../../../components";
 import PaymentDetails from "../../../payment-details";
-import PercentageModal from './percentage-modal'
+import PercentageModal from "./percentage-modal";
 
 const ShareCost = () => {
   const dispatch = useDispatch();
 
   const serviceNumberRef = useRef(null);
   const serviceAmountRef = useRef(null);
-  const recipientIdRef  = useRef(null);
-  const percentageRef = useRef(null);
-  const descriptionRef = useRef(null);
+
   const showServicePayment = useSelector(
     (state) => state?.dashboard.states.showServicePayment
   );
@@ -26,54 +24,22 @@ const ShareCost = () => {
   const serviceName = useSelector(
     (state) => state?.dashboard.states.serviceName
   );
-  const user = useSelector((state) => state.auth.states.user);
-  const [userDetails, setUserDetails] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    uuid: "",
-  });
+
   const [details, setDetails] = useState({
     serviceNumber: "",
     serviceAmount: "",
-    recipientId: "",
-    percentage: "",
-    description: "",
-  });
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
   });
 
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     serviceNumberError: "",
     serviceAmountError: "",
-    recipientIdError: "",
-    percentageError: "",
-    descriptionError: "",
   });
-  useEffect(() => {
-    if (user) {
-      setUserDetails({
-        firstName: user.firstName || "",
-        lastName: user.lastName || "",
-        phone: user.phone || "",
-        uuid: user.uuid || "",
-      });
-    }
-  }, []);
+
   const validate = () => {
     let isError = false;
     const errors = {
       serviceNumberError: "",
       serviceAmountError: "",
-      recipientIdError: "",
-      percentageError: "",
-      descriptionError: "",
     };
 
     if (!details.serviceNumber) {
@@ -83,24 +49,6 @@ const ShareCost = () => {
     if (!details.serviceAmount) {
       isError = true;
       errors.serviceAmountError = "Please enter amount";
-    }
-    if (!details.recipientId) {
-      isError = true;
-      errors.recipientIdError = "Please enter recipient's id";
-    }
-    if (!details.percentage) {
-      isError = true;
-      errors.percentageError =
-        "Please enter percentage you want the user with the id above to pay";
-    }
-    if (!(+details.percentage) >= 100) {
-        isError = true;
-        errors.percentageError =
-          "Percentage must be less than and not equal to 100";
-      }
-    if (!details.description) {
-      isError = true;
-      errors.descriptionError = "Please enter a description";
     }
 
     setError({ ...error, ...errors });
@@ -115,24 +63,14 @@ const ShareCost = () => {
     if (serviceNumberRef.current && serviceAmountRef.current) {
       serviceNumberRef.current.value = "";
       serviceAmountRef.current.value = "";
-      recipientIdRef.current.value = "";
-      percentageRef.current.value = "";
-      descriptionRef.current.value = "";
     }
     setDetails({
       serviceAmount: "",
       serviceNumber: "",
-      recipientIdRef: "",
-      percentageRef: "",
-      descriptionRef: "",
     });
   };
   const handleCloseModal = () => {
     dispatch(setShowShareCost(false));
-  };
-
-  const handleCloseShare = () => {
-    dispatch(setShowShareModal(false));
   };
 
   const handleShareCost = () => {

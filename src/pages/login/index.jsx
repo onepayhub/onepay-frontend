@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components";
-import { Spinner } from "../../constants/images";
+import { SignupBg, Spinner } from "../../constants/images";
 import { toast } from "react-toastify";
 import { setAccessToken, setUser } from "../../slice/signup";
 
@@ -116,8 +116,8 @@ const Login = () => {
         <span>OnePay</span>
         <span className="text-sm">Welcome back</span>
       </Link>
-      <div className="lg:w-[40%] pt-24 lg:pt-[25rem] px-6 lg:pl-20 flex justify-center items-start">
-        <div className="w-full flex flex-col gap-y-4">
+      <div className="w-full flex justify-between items-start">
+        <div className="lg:w-[40%] w-full flex pt-24 lg:pt-[25rem] px-6 lg:pl-20 flex-col gap-y-4">
           <div className="flex-col flex gap-y-1">
             <label htmlFor="firstName" className={labelStyle}>
               Email
@@ -165,6 +165,9 @@ const Login = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="w-[50vw] h-screen lg:block hidden">
+          <img src={SignupBg} alt="" className="h-full w-full" />
         </div>
       </div>
     </div>

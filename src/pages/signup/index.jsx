@@ -5,9 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { setAccessToken, setSignupDetails } from "../../slice/signup";
-import { generateRandomUID } from "../../hooks/useGenerateId";
 
-import { Spinner } from "../../constants/images";
+import { SignupBg, Spinner } from "../../constants/images";
 import { Button } from "../../components";
 import {
   createUserWithEmailAndPassword,
@@ -170,11 +169,11 @@ const Signup = () => {
       </Link>{" "}
       <div className="text-lightgray text-xs lg:text-sm my-4 font-medium w-full lg:top-[7%] top-[4%] absolute lg:pl-20 pl-6 pt-10">
         To test full functionalities, we recommend testing with a friend. <br />{" "}
-        So, signup and signup with a second device as well or <br /> encourage a friend to sign
-        up to test. <br /> Thanks!
+        So, signup and signup with a second device as well or <br /> encourage a
+        friend to sign up to test. <br /> Thanks!
       </div>
-      <div className="lg:w-1/2 w-full px-6 pb-6 py-[11rem] lg:pt-[15rem] lg:pl-20 flex justify-center items-start">
-        <div className="w-full flex flex-col gap-y-4">
+      <div className="lg:w-full w-full gap-x-4 flex lg:justify-between items-start">
+        <div className="lg:w-[40%] w-full flex px-6 pb-6 py-[11rem] lg:pt-[15rem] lg:pl-20 flex-col gap-y-4">
           <div className="flex-col flex gap-y-1">
             <label htmlFor="firstName" className={labelStyle}>
               First Name
@@ -280,6 +279,9 @@ const Signup = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="w-[50vw] h-screen lg:block hidden">
+          <img src={SignupBg} alt="" className="h-full w-full" />
         </div>
       </div>
     </div>

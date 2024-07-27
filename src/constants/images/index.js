@@ -23,3 +23,4 @@ export { default as Fidelity } from "../../assets/images/fidelity.png";
 export { default as MpLogo } from "../../assets/images/moniepoint.jpeg";
 export { default as OpayLogo } from "../../assets/images/opay.png";
 export { default as FbLogo } from "../../assets/images/Fb.jpeg";
+export { default as SignupBg } from "../../assets/images/signup-bg.jpg";

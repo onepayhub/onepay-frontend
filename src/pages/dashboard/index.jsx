@@ -9,6 +9,7 @@ import { onChildAdded, ref } from "firebase/database";
 import { database } from "../../firebase/config";
 import { toast } from "react-toastify";
 import { setNotificationData } from "../../slice/dashboard";
+import ShareCost from "./_components/home/_components/share-cost";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ const Dashboard = () => {
   );
   const showRequestModal = useSelector(
     (state) => state?.dashboard.states.showRequestModal
+  );
+  const showShareCost = useSelector(
+    (state) => state?.dashboard.states.showShareCost
   );
   const user = useSelector((state) => state.auth.states.user);
 
@@ -58,7 +62,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      {(showRequestModal || approvePayment) && (
+      {(showRequestModal || approvePayment || showShareCost) && (
         <div className="fixed bg-black bg-opacity-30 z-20 w-screen top-0 left-0 h-screen" />
       )}
       {showOnepay && <OnepayTransfer />}
@@ -67,6 +71,11 @@ const Dashboard = () => {
       {showRequestModal && (
         <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[2%] overflow-auto bottom-0  right-0 left-0 lg:left-[35%]">
           <RequestModal />
+        </div>
+      )}
+      {showShareCost && (
+        <div className="lg:absolute fixed z-50 animate-slide_up lg:top-[20%] overflow-auto bottom-0  right-0 left-0 lg:left-[35%]">
+          <ShareCost />
         </div>
       )}
       {approvePayment && (

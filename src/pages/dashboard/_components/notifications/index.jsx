@@ -61,15 +61,38 @@ const Notifications = () => {
                     {value.notificationData.reason}
                   </span>
                   <span className="lg:text-base text-xs ">
-                    Amount: ₦{value.notificationData.amount}
+                    <span>Amount: </span>
+                    ₦{value.notificationData.amount} 
                   </span>
+
+                  {value.notificationData.title === "request to share cost" && (
+                    <span className="lg:text-base text-xs ">
+                      <span>Percentage: </span>
+                      {value.notificationData.percentage}
+                      <span>%</span>
+                    </span>
+                  )}
+                     {value.notificationData.title === "request to share cost" && (
+                    <span className="lg:text-base text-xs ">
+                      <span>Amount requested to pay: </span>
+                      <span>₦</span>{value.notificationData.amountToPay}
+                      
+                    </span>
+                  )}
                   <Button
-                    className="w-fit !text-sm lg:block hidden"
+                    className="w-[200px] !text-sm lg:block hidden"
                     backgroundColor="transparent"
                     textColor="#3745c0"
-                    onClick={() => handleApproveClick(value.notificationData.id)}
+                    onClick={() =>
+                      handleApproveClick(value.notificationData.id)
+                    }
                   >
-                    Approve payment
+                    {value.notificationData.title ===
+                    "request to share cost" ? (
+                      <span>Share cost</span>
+                    ) : (
+                      <span>Approve payment</span>
+                    )}
                   </Button>
                 </div>
                 <div className="flex flex-col lg:text-base text-xs lg:px-5">
@@ -87,9 +110,16 @@ const Notifications = () => {
                     className="w-full mt-4 !text-xs lg:hidden block"
                     backgroundColor="transparent"
                     textColor="#3745c0"
-                    onClick={() => handleApproveClick(value.notificationData.id)}
+                    onClick={() =>
+                      handleApproveClick(value.notificationData.id)
+                    }
                   >
-                    Approve payment
+                    {value.notificationData.title ===
+                    "request to share cost" ? (
+                      <span>Share cost</span>
+                    ) : (
+                      <span>Approve payment</span>
+                    )}
                   </Button>
                 </div>
               </div>

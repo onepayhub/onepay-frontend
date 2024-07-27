@@ -21,6 +21,7 @@ const ApprovePayment = () => {
   const allNotifications = useSelector(
     (state) => state?.dashboard.states.notificationData
   );
+
   const notificationId = useSelector(
     (state) => state?.dashboard.states.selectedNotificationId
   );
@@ -113,7 +114,11 @@ const ApprovePayment = () => {
                         </span>
                         <div className="font-normal text-[#181818] flex items-center justify-center text-xl lg:text-2xl pb-10">
                           <span className="lg:text-xl text-base mx-1">₦</span>
-                          {notification.amount}
+                          {notification.title === "request to share cost" ? (
+                            <span>{notification.amountToPay}</span>
+                          ) : (
+                            <span>{notification.amount}</span>
+                          )}
                         </div>
                         <div className="flex justify-between px-4 lg:px-2">
                           <span className="text-sm text-lightgray">
@@ -141,16 +146,26 @@ const ApprovePayment = () => {
                         <div className="flex justify-between px-4 lg:px-2">
                           <span className="text-sm text-lightgray">Amount</span>
                           <span className="text-xs lg:text-sm text-[#181818]">
-                            ₦ {notification.amount}
+                            ₦{" "}
+                            {notification.title === "request to share cost" ? (
+                              <span>{notification.amountToPay}</span>
+                            ) : (
+                              <span>{notification.amount}</span>
+                            )}
                           </span>
                         </div>
                         <div className="flex justify-between px-4 lg:px-2">
                           <span className="text-sm text-lightgray">
                             Transaction fee
                           </span>
-                          <span className="text-xs lg:text-sm text-[#181818]">
-                            ₦ 0.00
-                          </span>
+                          <div className="flex gap-x-2">
+                            <span className="text-xs lg:text-sm text-[#181818]">
+                              ₦ 0.00
+                            </span>
+                            <span className="text-xs lg:text-sm line-through text-[#181818]">
+                              ₦ 10.00
+                            </span>
+                          </div>
                         </div>
                         <div className="flex justify-between px-4 lg:px-2">
                           <span className="text-sm text-lightgray">

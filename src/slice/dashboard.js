@@ -12,6 +12,10 @@ const initialState = {
     selectedNotificationId: '',
     showPayment: false,
     paymentSuccess: false,
+    showShareCost: false,
+    showServicePayment: false,
+    serviceName: "",
+    showShareModal: false,
   },
 };
 
@@ -49,6 +53,18 @@ export const dashboardSlice = createSlice({
     setPaymentSuccess: (state, action) => {
       state.states.paymentSuccess = action.payload;
     },
+    setShowShareCost: (state, action) => {
+      state.states.showShareCost = action.payload;
+    },
+    setShowServicePayment: (state, action) => {
+      state.states.showServicePayment = action.payload;
+    },
+    setServiceName: (state, action) => {
+      state.states.serviceName = action.payload;
+    },
+    setShowShareModal: (state, action) => {
+      state.states.showShareModal = action.payload;
+    },
   },
 });
 
@@ -63,4 +79,8 @@ export const {
   setSelectedNotificationId,
   setShowPayment,
   setPaymentSuccess,
+  setShowShareCost,
+  setShowServicePayment,
+  setServiceName,
+  setShowShareModal,
 } = dashboardSlice.actions;

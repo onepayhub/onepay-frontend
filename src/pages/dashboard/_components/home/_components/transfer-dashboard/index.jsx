@@ -12,7 +12,7 @@ const TransferDashboard = () => {
     // dispatch(setShowOnepay(true));
   };
   const handleRequestModal = () => {
-    dispatch(setShowRequestModal(true));
+    // dispatch(setShowRequestModal(true));
   };
   return (
     <div className="bg-primary mb-6 shadow-lg py-8 px-6 lg:px-10 rounded-[20px]">

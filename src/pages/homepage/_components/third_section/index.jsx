@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const ThirdSection = () => {
   return (
     <div className="flex lg:flex-row justify-center items-center flex-col gap-y-6 gap-x-5 my-10 container container-md mx-auto">
-      {/* <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
-        <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
+      <div className="flex gap-y-3 flex-col lg:w-full pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
+        {/* <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
           01
-        </span>
+        </span> */}
         <span className="lg:text-xl text-[#49529b] font-medium">
           Share Expenses
         </span>
@@ -27,7 +27,7 @@ const ThirdSection = () => {
             Read more
           </Link>
         </div>
-      </div> */}
+      </div>
       {/* <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
         <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
           02
@@ -51,10 +51,10 @@ const ThirdSection = () => {
           </Link>
         </div>
       </div> */}
-      <div className="flex gap-y-3 flex-col lg:w-full pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
-        {/* <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
+      {/* <div className="flex gap-y-3 flex-col lg:w-full pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
+        <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
           00
-        </span> */}
+        </span>
         <span className="lg:text-xl text-[#49529b] font-medium">
           Request Payments
         </span>
@@ -72,7 +72,7 @@ const ThirdSection = () => {
             Read more
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

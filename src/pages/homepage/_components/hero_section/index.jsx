@@ -48,17 +48,16 @@ const HeroSection = () => {
         <div className="flex flex-col tracking-widest">
           <span className="uppercase font-semibold text-[#49529b] text-center text-lg lg:text-6xl">
             <span className="text-[#181818]">beyond</span>{" "}
-            <br className="lg:hidden block" /> payment and transfers
+            <br className="lg:hidden block" /> payment and transfers,
             {""}
             <br />
-            One account for all
+            One app, shared costs.
           </span>
         </div>
         <span className="text-[#31376d] py-2 text-sm text-center">
-          We're revolutionizing the fintech landscape by eliminating the hassle
-          of requesting money. <br /> Experience the thrill of seamless
-          transactions as you effortlessly send and receive funds with just a
-          tap.
+          Effortlessly split expenses with friends on various services.
+          Instantly notify collaborators when costs are divided, ensuring
+          seamless coordination and hassle-free payments.
         </span>
         <div className="flex items-center font-medium text-[#181818] gap-x-2 pt-2 cursor-pointer group">
           <Link to="/prototype/signup" className="lg:text-base text-xs">

@@ -17,8 +17,8 @@ const ServicesDashboard = () => {
   const dispatch = useDispatch();
 
   const handleServiceClick = (value) => {
-    dispatch(setShowShareCost(true));
-    dispatch(setServiceName(value));
+    // dispatch(setShowShareCost(true));
+    // dispatch(setServiceName(value));
   };
   return (
     <div className="bg-primary lg:mb-10 mb-6 shadow-lg py-8 lg:px-10 px-6 rounded-[20px]">

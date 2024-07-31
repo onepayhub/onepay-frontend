@@ -47,19 +47,23 @@ const HeroSection = () => {
       <div className="flex gap-y-2 justify-center h-[50vh]  mx-auto  items-center flex-col">
         <div className="flex flex-col tracking-widest">
           <span className="uppercase font-semibold text-[#49529b] text-center text-lg lg:text-6xl">
-            <span className="text-[#181818]">beyond</span> <br className="lg:hidden block" /> payment and transfers
+            <span className="text-[#181818]">beyond</span>{" "}
+            <br className="lg:hidden block" /> payment and transfers
             {""}
             <br />
             One account for all
           </span>
         </div>
         <span className="text-[#31376d] py-2 text-sm text-center">
-          We're tired of the process involved with multiple bank account and
-          bank selection, so we're reinventing the fintech space with exciting
-          features.
+          We're revolutionizing the fintech landscape by eliminating the hassle
+          of requesting money. <br /> Experience the thrill of seamless
+          transactions as you effortlessly send and receive funds with just a
+          tap.
         </span>
         <div className="flex items-center font-medium text-[#181818] gap-x-2 pt-2 cursor-pointer group">
-          <Link to="/prototype/signup" className="lg:text-base text-xs">View our prototype</Link>
+          <Link to="/prototype/signup" className="lg:text-base text-xs">
+            View our prototype
+          </Link>
           <GoArrowRight
             size={27}
             className="group-hover:translate-x-2 transition-all ease-in"

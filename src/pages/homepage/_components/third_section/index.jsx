@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const ThirdSection = () => {
   return (
-    <div className="flex lg:flex-row flex-col gap-y-6 gap-x-5 my-10 container container-md mx-auto">
-      <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
+    <div className="flex lg:flex-row justify-center items-center flex-col gap-y-6 gap-x-5 my-10 container container-md mx-auto">
+      {/* <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
         <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
           01
         </span>
@@ -27,8 +27,8 @@ const ThirdSection = () => {
             Read more
           </Link>
         </div>
-      </div>
-      <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
+      </div> */}
+      {/* <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
         <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
           02
         </span>
@@ -50,11 +50,11 @@ const ThirdSection = () => {
             Read more
           </Link>
         </div>
-      </div>
-      <div className="flex gap-y-3 flex-col lg:w-[70%] pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
-        <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
-          03
-        </span>
+      </div> */}
+      <div className="flex gap-y-3 flex-col lg:w-full pl-16 py-5 rounded-[20px] hover:scale-105 transition-all ease-in bg-[#EEE]">
+        {/* <span className="border border-[#181818] px-4 py-[2px] rounded-[10px] w-fit">
+          00
+        </span> */}
         <span className="lg:text-xl text-[#49529b] font-medium">
           Request Payments
         </span>

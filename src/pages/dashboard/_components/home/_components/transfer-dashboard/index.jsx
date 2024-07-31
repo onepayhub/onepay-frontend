@@ -9,7 +9,7 @@ const TransferDashboard = () => {
   const dispatch = useDispatch();
 
   const handleOnepayClick = () => {
-    dispatch(setShowOnepay(true));
+    // dispatch(setShowOnepay(true));
   };
   const handleRequestModal = () => {
     dispatch(setShowRequestModal(true));
